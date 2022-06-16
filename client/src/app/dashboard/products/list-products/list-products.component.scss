@@ -1,0 +1,8 @@
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  .right{
+    margin-bottom: 15px;
+  }
+}

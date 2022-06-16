@@ -1,0 +1,30 @@
+
+.ll-about {
+  &__text {
+    h2 {
+      font-size: 38px;
+      line-height: 50px;
+      letter-spacing: 1.5px;
+    }
+    h5 {
+      font-size: 21px;
+      line-height: 31px;
+    }
+    p {
+      font-size: 17px;
+      line-height: 27px;
+      color: #6b7280;
+    }
+  }
+  &__img {
+    $iconSize: 90px;
+    .mat-icon {
+      font-size: $iconSize;
+      width: $iconSize;
+      height: $iconSize;
+      line-height: $iconSize;
+      opacity: 0.8;
+      color: #fff;
+    }
+  }
+}

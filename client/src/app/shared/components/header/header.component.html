@@ -1,0 +1,46 @@
+<header class="ll_header" [class.top-fixed]="topFixed" [ngClass]="{ 'bg-gray-50 shadow': topFixed && isScrolled }">
+  <div class="container">
+    <div class="flex items-center">
+      <div class="flex items-center">
+        <a class="logo" [routerLink]="['']"><img src="assets/images/demo_logo.png" alt="Logo" /></a>
+        <ul class="flex item-center ml-5" *ngIf="!isLessThenLargeDevice && menuList && menuList.length">
+          <li *ngFor="let menu of menuList">
+            <a mat-button [routerLink]="[menu.path]" routerLinkActive="bg-gray-100" class="text-lg font-bold py-2 px-5">{{ menu.name }}</a>
+          </li>
+        </ul>
+      </div>
+      <button
+        *ngIf="isLessThenLargeDevice"
+        (click)="toggleSidenav.emit()"
+        class="_sidenav__toggler ml-auto md:ml-3 ms-sm-3"
+        mat-icon-button
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="hidden items-center md:flex ml-auto">
+        <button mat-icon-button >
+          <mat-icon class="guest">account_circle</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openLogin()">
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+          </button>
+          <button mat-menu-item (click)="openSignup()">
+            <mat-icon>input</mat-icon>
+            <span>signup</span>        </button>
+        </mat-menu>
+        <!-- <a [routerLink]="['/auth/login']"   class="text-lg font-bold py-2 px-5" style="background-color:#E8D3D0">Login</a> -->
+        <!-- 
+<a (click)="openLogin()"   class="text-lg font-bold py-2 px-5" style="background-color:#E8D3D0">Login</a>
+        <a (click)="openSignup()"  class="text-lg font-bold py-2 px-5 ml-2" style="background-color:#89A6CE">Join Now</a>
+        -->
+        
+        <!-- <a [routerLink]="['/auth/signup']"  class="text-lg font-bold py-2 px-5 ml-2" style="background-color:#89A6CE">Join Now</a> -->
+      </div>
+    </div>
+  </div>
+</header>

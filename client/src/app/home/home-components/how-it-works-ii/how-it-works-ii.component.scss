@@ -1,0 +1,29 @@
+// how is it work
+.ll-process {
+  position: relative;
+  padding: 64px 15px 0px;
+  &-area {
+    padding: 80px 0;
+  }
+  .number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: 900;
+    font-size: 123px;
+    line-height: 100px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(255, 255, 255, 0.25);
+  }
+  h3 {
+    font-size: 1rem;
+    line-height: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  p {
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+}

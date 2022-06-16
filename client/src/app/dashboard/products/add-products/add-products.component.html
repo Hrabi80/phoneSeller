@@ -1,0 +1,50 @@
+
+
+  <div class="container">
+    <div class="grid grid-cols-12 gap-4 lg:gap-8 xxl:gap-16">
+      <div class="contact__form col-span-12 lg:col-span-12">
+        <div class="mb-8">
+          <h3>Add new product to your {{data.category}} category </h3>
+          <p>Then you can add devices to this product !</p>
+        </div>
+        <form [formGroup]="productform">
+          
+            <input type="text" 
+            placeholder="Name of product exemple: iPhone X - iPhone 13 - MacBook...." 
+            class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5" 
+            formControlName="name"
+            />
+            <input
+              type="number"
+              placeholder="Up to price filed , how you estimate the price can up to"
+              class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+              formControlName="upPrice"
+            />
+          <input type="text"
+           placeholder="small description of product if you want"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5" 
+           formControlName="description"
+           />
+           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
+           <input 
+           class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+           aria-describedby="file_input_help" 
+           id="file_input"
+            type="file"
+            (change)="uploadFile($event)">
+           <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help"> PNG, JPG, JPEG or GIF.</p>
+           <br>
+          <button 
+          class="px-5 py-2 text-white mt-5 rounded font-medium"
+          style="background-color: var(--blue);"
+          [disabled]="productform.pristine || productform.invalid" 
+          (click)="addProduct()">
+          Add product
+          </button>
+        </form>
+      </div>
+      
+
+    </div>
+  </div>
+
