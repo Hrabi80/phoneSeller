@@ -2,7 +2,10 @@
   <div class="container">
     <div class="flex items-center">
       <div class="flex items-center">
-        <a class="logo" [routerLink]="['']"><img src="assets/images/demo_logo.png" alt="Logo" /></a>
+        <a class="logo" [routerLink]="['']">
+          <img src="assets/images/logov1.jpg" alt="Logo" class="logo-img"/>
+        </a>
+        <!-- <span>world wide nation</span> -->
         <ul class="flex item-center ml-5" *ngIf="!isLessThenLargeDevice && menuList && menuList.length">
           <li *ngFor="let menu of menuList">
             <a mat-button [routerLink]="[menu.path]" routerLinkActive="bg-gray-100" class="text-lg font-bold py-2 px-5">{{ menu.name }}</a>

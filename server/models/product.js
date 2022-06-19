@@ -32,7 +32,7 @@ const productSchema = new Schema({
     devices:[
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Productold' 
+            ref: 'Device' 
         }
     ],
 

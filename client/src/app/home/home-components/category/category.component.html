@@ -7,10 +7,13 @@
           <img class="-mt-14" src="assets/images/category/phone.png" alt="" />
         </div>
         <div class="py-5 col-span-7">
-          <h4 class="text-white mb-4">Apple Smart Phone</h4>
+          <h4 class="text-white mb-4">iPhone</h4>
           <p class="text-white mb-7">
           </p>
-          <button class="button-56" role="button">Browse</button>
+          <button class="button-56"
+           role="button"
+           routerLink="products/list/iPhone"
+           >Browse</button>
         </div>
       </div>
       <div class="ll-starter__card px-5 grid grid-cols-12 place-items-center mt-16 xl:mt-0">
@@ -18,15 +21,13 @@
           <img class="-mt-14" src="assets/images/category/tablette.png" alt="" />
         </div>
         <div class="py-5 col-span-7 order-first text-right">
-          <h4 class="text-white mb-4">Apple Tablet</h4>
+          <h4 class="text-white mb-4">iPad</h4>
           <p class="text-white mb-7">
           </p>
-          <!-- 
-           <a [routerLink]="['/auth/signup']" routerLinkActive="router-link-active" mat-flat-button color="warn" class="font-semibold"
-            >Join Now</a
-          >
-          -->
-          <button class="button-56" role="button">Browse</button>
+          <button 
+          class="button-56" 
+          [routerLink]="'/products/list/iPad'"
+          role="button">Browse</button>
         </div>
       </div>
       <div class="ll-starter__card px-5 grid grid-cols-12 place-items-center mt-16 xl:mt-0">
@@ -34,11 +35,13 @@
           <img class="-mt-14" src="assets/images/category/watch.png" alt="" />
         </div>
         <div class="py-5 col-span-7 order-first text-right">
-          <h4 class="text-white mb-4">Apple SmartWatch</h4>
+          <h4 class="text-white mb-4">iWatch</h4>
           <p class="text-white mb-7">
           </p>
-          <button class="button-56" role="button">Browse</button>
-          
+          <button 
+          class="button-56"
+          [routerLink]="'/products/list/iWatch'"
+          role="button">Browse</button>
         </div>
       </div>
       <div class="ll-starter__card px-5 grid grid-cols-12 place-items-center mt-16 xl:mt-0">
@@ -46,9 +49,12 @@
           <img class="-mt-14" src="assets/images/category/laptop.png" alt="" />
         </div>
         <div class="py-5 col-span-7 order-first text-right">
-          <h4 class="text-white mb-4">Apple Computer</h4>
+          <h4 class="text-white mb-4">Mac</h4>
           <p class="text-white mb-7">          </p>
-          <button class="button-56" role="button">Browse</button>
+          <button 
+          class="button-56"
+          [routerLink]="'/products/list/Mac'" 
+          role="button">Browse</button>
         </div>
       </div>
     

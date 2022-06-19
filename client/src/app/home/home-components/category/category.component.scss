@@ -1,6 +1,7 @@
 .ll-starter {
   &__card {
-    background: linear-gradient(180deg, var(--blue) 0%,  var(--pinky) 130%);
+   // background: linear-gradient(180deg, var(--blue3) 0%,  var(--purple) 130%);
+    background: url("/assets/images/bg.jpg");
     margin-bottom: 20px;
   }
   img{

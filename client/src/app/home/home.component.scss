@@ -1,8 +1,16 @@
 .ll-hero {
-  background: linear-gradient(130deg, #5179af 20%, var(--pinky) 100%);
+  //background: linear-gradient(130deg, #5f345b 30%, #537ca5 100%);
+  background: url("/assets/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
   padding: 200px 0 100px;
   position: relative;
   min-height: 50vw;
+  .hero{
+    width: 49vw;
+    height: 45vh;
+  }
   .container {
     position: relative;
     z-index: 3;
