@@ -85,8 +85,27 @@ productRouter.route('/api/product/:id_prod')
     res.statusCode = 403;
     res.end('POST operation not supported on sercice/id');
 })
-.put(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin ,(req,res,next)=>{
-    Products.findByIdAndUpdate(req.params.id_prod,{$set: req.body},{new:true})
+.put(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin , upload.single('photo'),(req,res,next)=>{
+    const url = req.protocol + '://' + req.get('host');
+    if(req.file){
+        var pro = new Products({
+            _id : req.params.id_prod,
+            name: req.body.name,
+            description : req.body.description,
+            photo: url +'/images/products/'+ req.file.filename,
+            category : req.body.category,
+            upPrice: req.body.upPrice,
+          });
+    }else {
+    var pro = new Products({
+        _id : req.params.id_prod,
+        name: req.body.name,
+        description : req.body.description,
+        category : req.body.category,
+        upPrice: req.body.upPrice,
+      }); 
+    }
+    Products.findByIdAndUpdate(req.params.id_prod,{$set: pro},{new:true})
     .then((prod)=>{
         res.status.code=200;
         res.setHeader('Content-Type','application/json');
@@ -112,11 +131,9 @@ productRouter.route('/productById/:id_prod')
         if(prod !=null){
             res.status.Code=200;
             res.setHeader('Content-Type','application/json');
-            console.log("prodddd)===>",prod);
             res.json(prod);
         }
         else{
-            console.log("prodddd)nooo===>",prod);
             err = new Error('produuct '+ req.params.id_prod + ' not found.');
             err.status = 404;
             return next(err);

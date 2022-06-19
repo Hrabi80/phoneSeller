@@ -30,9 +30,8 @@ export class ProductService {
   deleteProduct(idProduct:string):Observable<any>{
     return this.http.delete(this.url + '/api/product/'+idProduct);
   }
-  updateProduct(productId:string,data : product ): Observable<product> {
-    this.headers.append('Access-Control-Allow-Credentials', 'true');
-    return this.http.put<product>(this.url + '/api/product/'+productId,data)
+  updateProduct(productId:string,data : any ){    
+    return this.http.put(this.url + '/api/product/'+productId,data);
   }
 
 }

@@ -1,5 +1,5 @@
 
-
+<mat-dialog-content>
   <div class="container">
     <div class="grid grid-cols-12 gap-4 lg:gap-8 xxl:gap-16">
       <div class="contact__form col-span-12 lg:col-span-12">
@@ -8,7 +8,14 @@
           <p>Update product!</p>
         </div>
         <form [formGroup]="productform">
-          <img src="{{productToUpdate?.photo}}" style="width: 50%;height: 50px;">
+          <!-- <img src="{{productToUpdate?.photo}}" style="width: 50%;height: 50px;"> -->
+          <div class="w-full sm:w-1/2 lg:w-3/12 px-2 xxl:px-4 mt-4">
+            <div class="member">
+              <div class="member__image">
+                <img src="{{productToUpdate?.photo}}" alt="Team photo" />
+              </div>
+            </div>
+          </div>
           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
            <input
            class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -42,8 +49,8 @@
           class="px-5 py-2 text-white mt-5 rounded font-medium"
           style="background-color: var(--blue);"
           [disabled]="productform.pristine || productform.invalid"
-          (click)="addProduct()">
-          Add product
+          (click)="updateProduct()">
+          Update product
           </button>
         </form>
       </div>
@@ -52,3 +59,4 @@
     </div>
   </div>
 
+</mat-dialog-content>

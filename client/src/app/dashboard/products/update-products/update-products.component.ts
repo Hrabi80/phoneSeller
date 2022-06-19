@@ -15,7 +15,6 @@ import { environment } from 'src/environments/environment';
 export class UpdateProductsComponent implements OnInit,OnDestroy {
   productform!: FormGroup;
   productToUpdate : product;
-  path = environment.api_url+'/public/images/products/';
   subs = new SubscriptionContainer();
   constructor(public dialogRef: MatDialogRef<ListProductsComponent>,
               private fb : FormBuilder,
@@ -27,12 +26,10 @@ export class UpdateProductsComponent implements OnInit,OnDestroy {
       name:  ['', [Validators.required, Validators.minLength(3)]],
       description:  [''],
       upPrice:  ['', [Validators.required ]],
-      category : ['', [Validators.required ]],
       photo: [null],
     });
     this.subs.add = this.service.getProductById(this.data.idProduct).subscribe((res:product)=>{
       this.productToUpdate = res;
-      console.log('productx==>',this.productToUpdate);
     })
   }
   ngOnDestroy() {
@@ -47,31 +44,32 @@ export class UpdateProductsComponent implements OnInit,OnDestroy {
     this.productform.get('photo').updateValueAndValidity()
   }
 
-  addProduct(){
-    if (this.productform.invalid) {  
-      Swal.fire(
-        'Your input is invalid!',
-        `Please verify all form fields`,
-        'error'
-      )
-    }
-    else { 
+  updateProduct(){ 
+      this.subs.dispose();
       var formData: any = new FormData();
-      formData.append("name", this.productform.get('name').value);
-      formData.append("category", this.productform.get('category').value);
+      if(this.productform.get('name').value != null)
+      var name = this.productform.get('name').value;
+      formData.append("name", name);
+      console.log("name ===",name , formData.name);
       formData.append("description", this.productform.get('description').value);
+      if(this.productform.get('photo').value != null)
       formData.append("photo", this.productform.get('photo').value);
+      if(this.productform.get('upPrice').value != null)
       formData.append("upPrice", this.productform.get('upPrice').value);
-      this.subs.add =this.service.addProduct(formData).subscribe((res:any) => {
+      console.log("id ",this.data.idProduct );
+     
+      this.subs.add =this.service.updateProduct(this.data.idProduct ,formData).subscribe((res:any) => {
+        console.log("result update ", res);
           setTimeout(() => {
            Swal.fire(
-             'added !',
-             'new product is added to the database !',
+             'Updated !',
+             'The product is updated successfully !',
              'success'
            );
+           this.productToUpdate = res;
+           console.log("name ===", this.productform.get('name').value);
          }, 1500);
       });
-  }
   }
 
 }
