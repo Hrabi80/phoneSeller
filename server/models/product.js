@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-require('mongoose-currency').loadType(mongoose);
-const Currency = mongoose.Types.Currency;
 
 
 const productSchema = new Schema({
@@ -35,7 +33,6 @@ const productSchema = new Schema({
             ref: 'Device' 
         }
     ],
-
 }
 ,{
     timestamps : true
@@ -67,6 +64,6 @@ const deviceSchema = new Schema({
 
 
 
-var Services = mongoose.model('Product',productSchema);
+var Products = mongoose.model('Product',productSchema);
 
-module.exports = Services;
+module.exports = Products;

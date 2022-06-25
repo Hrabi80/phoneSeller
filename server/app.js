@@ -6,11 +6,15 @@ var logger = require('morgan');
 var config = require('./config');
 var passport = require('passport');
 
-const Contact = require('./models/contact');
-
+module.exports = {
+  Devices: require("./models/device"),
+  Products: require("./models/product"),
+  Users: require("./models/user"),
+};
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
+var deviceRouter = require('./routes/devices');
 var contactRouter = require('./routes/contacts');
 
 
@@ -57,6 +61,7 @@ app.all("/*", function(req, res, next){
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('',productsRouter);
+app.use('',deviceRouter);
 app.use('',contactRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));

@@ -1,0 +1,61 @@
+<div class="flex-container">
+  <div class="left"><h5 class="mb-3 font-medium">List {{prodId}} devices </h5></div>
+    <div class="right">
+      <a (click)="openAddDevice()" class="font-semibold" mat-flat-button color="warn">
+        Add New Device
+      </a>
+  </div>
+</div>
+	
+  
+<div class="table-inside">
+	<table class="order-table table-auto ltMd:responsive">
+		<thead>
+			<tr class="border text-left">
+				<th>
+					<span class="text-gray-800">Name</span>
+				</th>
+				<th>
+					<span class="text-gray-800">Price</span>
+				</th>
+				<th>
+					<span class="text-gray-800">Created</span>
+				</th>
+				<th class="text-right">Action</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let dev of devices" class="border">
+					<td>
+						{{dev?.caracteristics | titlecase }}
+					</td>
+					<td>
+						<span>${{dev?.newcondition}}</span>
+					</td>
+					<td>
+						<span>{{prod?.updatedAt  | date}}</span>
+					</td>
+					<td class="text-right">
+						<button class="action_icon__btn" mat-icon-button [matMenuTriggerFor]="menu">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu" xposition="before">
+							<button mat-menu-item>
+								<mat-icon>ads_click</mat-icon>
+								<span>browse</span>
+							</button>
+							<button mat-menu-item (click)="openUpdateDevice(prod._id)">
+								<mat-icon>update</mat-icon>
+								<span>Update</span>
+							</button>
+							<button mat-menu-item  (click)="deleteDevice(prod._id)" >
+								<mat-icon>delete</mat-icon>
+								<span>Delete</span>
+							</button>
+						</mat-menu>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+

@@ -13,6 +13,9 @@ import { DashboardOrderComponent } from './dashboard-order/dashboard-order.compo
 import { ListProductsComponent } from './products/list-products/list-products.component';
 import { AddProductsComponent } from './products/add-products/add-products.component';
 import { UpdateProductsComponent } from './products/update-products/update-products.component';
+import { ListDevicesComponent } from './devices/list-devices/list-devices.component';
+import { AddDevicesComponent } from './devices/add-devices/add-devices.component';
+import { UpdateDevicesComponent } from './devices/update-devices/update-devices.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { UpdateProductsComponent } from './products/update-products/update-produ
     DashboardOrderComponent,
     ListProductsComponent,
     AddProductsComponent,
-    UpdateProductsComponent
+    UpdateProductsComponent,
+    ListDevicesComponent,
+    AddDevicesComponent,
+    UpdateDevicesComponent
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule, MatMenuModule],
   providers : [AddProductsComponent,UpdateProductsComponent]

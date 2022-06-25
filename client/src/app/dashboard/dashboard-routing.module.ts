@@ -5,6 +5,7 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
 import { DashboardOrderComponent } from './dashboard-order/dashboard-order.component';
 import { DashboardProfileComponent } from './dashboard-profile/dashboard-profile.component';
 import { DashboardSavedItemComponent } from './dashboard-saved-item/dashboard-saved-item.component';
+import { ListDevicesComponent } from './devices/list-devices/list-devices.component';
 import { AddProductsComponent } from './products/add-products/add-products.component';
 import { ListProductsComponent } from './products/list-products/list-products.component';
 
@@ -19,6 +20,9 @@ const DashboardChildrenRoute: Routes = [
   },
   {
     path:'add-product/:category' , component : AddProductsComponent
+  },
+  {
+    path:'list-devices/:productId'  , component:ListDevicesComponent
   },
   {
     path: 'saved-items',

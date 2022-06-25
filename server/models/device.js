@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-require('mongoose-currency').loadType(mongoose);
-const Currency = mongoose.Types.Currency;
 
-// Define Schema
-let deviceSchema = new Schema({
+
+const deviceSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   characteristics: {
     type: String,
@@ -33,6 +31,10 @@ let deviceSchema = new Schema({
     type:Number,
     required:true,
     min:0,
+  },
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product' 
   },
 
 }, {
