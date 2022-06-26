@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { device } from 'src/app/models/device';
+import { product } from 'src/app/models/product';
 import { SubscriptionContainer } from 'src/app/_helper/subscription-container';
 import { DeviceService } from 'src/app/_services/device.service';
+import { ProductService } from 'src/app/_services/product.service';
 import Swal from 'sweetalert2';
 import { AddDevicesComponent } from '../add-devices/add-devices.component';
 import { UpdateDevicesComponent } from '../update-devices/update-devices.component';
@@ -14,11 +16,13 @@ import { UpdateDevicesComponent } from '../update-devices/update-devices.compone
 })
 export class ListDevicesComponent implements OnInit,OnDestroy {
   devices : Array<device>=[];
+  product : product;
   prodId : string;
   subs = new SubscriptionContainer();
   constructor(public dialog: MatDialog,
               private router : ActivatedRoute,
-              private service : DeviceService
+              private service : DeviceService,
+              private productService : ProductService
               ) { }
 
   ngOnInit(): void {
@@ -26,17 +30,20 @@ export class ListDevicesComponent implements OnInit,OnDestroy {
     this.subs.add = this.service.getDevices(this.prodId).subscribe((res:Array<device>)=>{
       this.devices = res;
     });
+    this.subs.add = this.productService.getProductById(this.prodId).subscribe((res:product)=>{
+      this.product = res;
+    });
   }
   ngOnDestroy(): void {
     this.subs.dispose();
   }
   openAddDevice() {
-    const dialogRef = this.dialog.open(AddDevicesComponent , {data:{prod:this.prodId}});
+    const dialogRef = this.dialog.open(AddDevicesComponent , {data:this.product});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
-  openUpdateProduct(id:string) {
+  openUpdateDevice(id:string) {
     const dialogRef2 = this.dialog.open(UpdateDevicesComponent , {data:{deviceId:id}});
     dialogRef2.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -44,9 +51,8 @@ export class ListDevicesComponent implements OnInit,OnDestroy {
   }
   deleteDevice(id:string){
     Swal.fire({
-     // type:'warning',
-      title: 'Are you sure you want to delete this product ?',
-      text: 'All the devices in this products will be removed also',
+      title: 'Are you sure you want to delete this device ?',
+      text: 'The data of this devices will be removed',
       showCancelButton: true,
       confirmButtonColor: '#ff0000',
       cancelButtonColor:'#049F0C',
@@ -59,7 +65,7 @@ export class ListDevicesComponent implements OnInit,OnDestroy {
             console.log(data);
             Swal.fire(
               'Deleted!',
-              'Ce service est supprimé.',
+              'This device is deleted.',
               'success'
             );
             const index = this.devices.findIndex(x => x._id === id);

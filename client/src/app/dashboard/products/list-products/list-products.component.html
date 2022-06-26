@@ -1,3 +1,5 @@
+
+
 <div class="flex-container">
   <div class="left"><h5 class="mb-3 font-medium">List {{cat}} products </h5></div>
     <div class="right">
@@ -39,8 +41,8 @@
 						<button class="action_icon__btn" mat-icon-button [matMenuTriggerFor]="menu">
 							<mat-icon>more_vert</mat-icon>
 						</button>
-						<mat-menu #menu="matMenu" xposition="before">
-							<button mat-menu-item>
+						<mat-menu #menu="matMenu" xposition="before" >
+							<button mat-menu-item routerLink="/dashboard/list-devices/{{prod._id}}">
 								<mat-icon>ads_click</mat-icon>
 								<span>browse</span>
 							</button>

@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UpdateProductsComponent implements OnInit,OnDestroy {
   productform!: FormGroup;
-  productToUpdate : product;
+  productToUpdate : product ;
   subs = new SubscriptionContainer();
   constructor(public dialogRef: MatDialogRef<ListProductsComponent>,
               private fb : FormBuilder,
@@ -30,6 +30,7 @@ export class UpdateProductsComponent implements OnInit,OnDestroy {
     });
     this.subs.add = this.service.getProductById(this.data.idProduct).subscribe((res:product)=>{
       this.productToUpdate = res;
+      console.log("product",this.productToUpdate);
     })
   }
   ngOnDestroy() {
@@ -56,8 +57,8 @@ export class UpdateProductsComponent implements OnInit,OnDestroy {
       formData.append("photo", this.productform.get('photo').value);
       if(this.productform.get('upPrice').value != null)
       formData.append("upPrice", this.productform.get('upPrice').value);
-      console.log("id ",this.data.idProduct );
-     
+      formData.append("devices", this.productToUpdate.devices);
+
       this.subs.add =this.service.updateProduct(this.data.idProduct ,formData).subscribe((res:any) => {
         console.log("result update ", res);
           setTimeout(() => {
@@ -66,7 +67,6 @@ export class UpdateProductsComponent implements OnInit,OnDestroy {
              'The product is updated successfully !',
              'success'
            );
-           this.productToUpdate = res;
            console.log("name ===", this.productform.get('name').value);
          }, 1500);
       });

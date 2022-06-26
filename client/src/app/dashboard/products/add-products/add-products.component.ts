@@ -34,7 +34,7 @@ export class AddProductsComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy() {
     this.subs.dispose();
-   }
+  }
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];

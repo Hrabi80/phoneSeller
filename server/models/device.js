@@ -12,22 +12,22 @@ const deviceSchema = new Schema({
       type:Boolean,
       default:true
   },
-  newcondittion:{
+  newcondition:{
     type:Number,
     required:true,
     min:0,
   },
-  goodcondittion:{
+  goodcondition:{
     type:Number,
     required:true,
     min:0,
   },
-  poorcondittion:{
+  poorcondition:{
     type:Number,
     required:true,
     min:0,
   },
-  faultycondittion:{
+  faultycondition:{
     type:Number,
     required:true,
     min:0,

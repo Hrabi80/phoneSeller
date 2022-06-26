@@ -27,7 +27,8 @@ const productSchema = new Schema({
             message: '{VALUE} is not supported'
           }
     },
-    devices:[
+    devices:
+    [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Device' 

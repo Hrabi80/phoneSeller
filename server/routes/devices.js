@@ -20,15 +20,15 @@ deviceRouter.route('/api/device/:prod_id')
     Product.findById(req.params.prod_id)
     .then((prod)=>{
       if(prod !=null){
-        console.log("see body here ===>", req.body.characteristics);
         var device = new Device({
           _id: new mongoose.Types.ObjectId(),
           characteristics: req.body.characteristics,
           islocked : req.body.islocked,
-          newcondittion : req.body.newcondittion,
-          goodcondittion: req.body.goodcondittion,
-          poorcondittion: req.body.poorcondittion,
-          faultycondittion: req.body.faultycondittion,
+          newcondition : req.body.newcondition,
+          goodcondition: req.body.goodcondition,
+          poorcondition: req.body.poorcondition,
+          faultycondition: req.body.faultycondition,
+          productId : req.params.prod_id
         });
           prod.devices.push(device);
           Device.create(device);
@@ -42,7 +42,9 @@ deviceRouter.route('/api/device/:prod_id')
                       res.json(result);
                   })
               
-          },(err)=>next(err));
+          },(err)=>{
+            next(err);
+          });
       }
       else{
           err = new Error('Product '+ req.params.prod_id + ' not found.');
@@ -55,25 +57,27 @@ deviceRouter.route('/api/device/:prod_id')
   
 
 
-deviceRouter.route('/device/:device_id')
+deviceRouter.route('/api/device/:device_id')
 .options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
-.get(cors.cors,(req,res,next)=>{
-    Device.findById(req.params.device_id)
-  //  .populate('product.devices')
-    .then((dev)=>{
-        if(dev !=null){
-            res.status.Code=200;
-            res.setHeader('Content-Type','application/json');
-            res.json(dev);
-        }
-        else{
-            err = new Error('Device with id =  '+ req.params.device_id + ' not found.');
-            err.status = 404;
-            return next(err);
-        }
-    },(err)=>next(err))
-    .catch((err)=>next(err));
+.delete(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next)=>{
+  Device.findByIdAndRemove(req.params.device_id)
+  .then((resp)=>{
+      res.statusCode=200;
+      res.setHeader('Content-Type','application/json');
+      res.json(resp);
+  },(err)=>next(err))
+  .catch((err)=>next(err));
 })
+.put(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next)=>{
+  Device.findByIdAndUpdate({ _id: req.params.device_id }, { $set: req.body },{new:true})
+  .then((resp)=>{
+      res.statusCode=200;
+      res.setHeader('Content-Type','application/json');
+      res.json(resp);
+  },(err)=>next(err))
+  .catch((err)=>next(err));
+})
+;
 
 
 function process(i){
@@ -112,31 +116,24 @@ deviceRouter.route('/devices/:prod_id')
       },(err)=>next(err))
       .catch((err)=>next(err));
   });
-/*
-  technicRouter.route('/technic2/:category_id')
-  .options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
-  .get(cors.cors, (req, res, next) => {
-    category.findById(req.params.category_id)
-    .populate('category.technics')
-    .then((data) => {
-      if(data !=null){
-        for(var i =(data.technics.length-1); i>=0;i--){
-            var tab=[];
-            Technics.findById(data)
-            .then((tech)=>{
-              res.status.Code=200;
-              res.setHeader('Content-Type','application/json');
-              tab.append(tech);
-              res.json(tab);
-            })
+  
+deviceRouter.route('/deviceById/:id_device')
+.options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
+.get(cors.corsWithOptions,(req,res,next)=>{
+    Device.findById(req.params.id_device)
+    .then((device)=>{
+        if(device !=null){
+            res.status.Code=200;
+            res.setHeader('Content-Type','application/json');
+            res.json(device);
         }
-      }
-      else {
-        res.json("it's a null");
-      }
-  
-    });
-  });*/
-  
+        else{
+            err = new Error('device '+ req.params.id_device + ' not found.');
+            err.status = 404;
+            return next(err);
+        }
+    },(err)=>next(err))
+    .catch((err)=>next(err))
+})
 
   module.exports = deviceRouter;

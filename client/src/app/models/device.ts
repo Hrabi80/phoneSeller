@@ -4,10 +4,10 @@ export class device{
   _id!:string;
   characteristics!:string;
   islocked!:boolean;
-  newcondittion!:number;
-  goodcondittion!:number;
-  poorcondittion!:number;
-  faultycondittion!:number;
+  newcondition!:number;
+  goodcondition!:number;
+  poorcondition!:number;
+  faultycondition!:number;
   productId!: product["_id"];
   updatedAt : Date;
 }

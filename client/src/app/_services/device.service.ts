@@ -17,21 +17,20 @@ export class DeviceService {
 
   constructor(private http: HttpClient) { }
 
-  addDevice(data : device): Observable<product> {
-    this.headers.append('Access-Control-Allow-Credentials', 'true');
-    return this.http.post<product>(this.url + '/api/product',data)
+  addDevice(data : device, productId: string): Observable<device> {
+    return this.http.post<device>(this.url + '/api/device/'+productId,data)
   }
   getDevices(productId : string):Observable<[device]>{
-    return this.http.get<[device]>(this.url + '/device/'+productId);
+    return this.http.get<[device]>(this.url + '/devices/'+productId);
   }
-  getDeviceById(productId:string):Observable<product>{
-    return this.http.get<product>(this.url + '/productById/'+productId);
+  getDeviceById(deviceId:string):Observable<device>{
+    return this.http.get<device>(this.url + '/deviceById/'+deviceId);
   }
-  deleteDevice(idProduct:string):Observable<any>{
-    return this.http.delete(this.url + '/api/product/'+idProduct);
+  deleteDevice(idDevice:string):Observable<any>{
+    return this.http.delete(this.url + '/api/device/'+idDevice);
   }
-  updateDevice(productId:string,data : any ){    
-    return this.http.put(this.url + '/api/product/'+productId,data);
+  updateDevice(deviceId:string,data : any ){    
+    return this.http.put(this.url + '/api/device/'+deviceId,data);
   }
 
 }

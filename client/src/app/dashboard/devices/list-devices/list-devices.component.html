@@ -1,5 +1,15 @@
+<div class="card-container">
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+  <img class="w-full" src="{{product.photo}}" alt="Sunset in the mountains">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2"> {{product.name}}</div>
+  </div>
+</div>
+</div>
+
+
 <div class="flex-container">
-  <div class="left"><h5 class="mb-3 font-medium">List {{prodId}} devices </h5></div>
+  <div class="left"></div>
     <div class="right">
       <a (click)="openAddDevice()" class="font-semibold" mat-flat-button color="warn">
         Add New Device
@@ -13,13 +23,22 @@
 		<thead>
 			<tr class="border text-left">
 				<th>
-					<span class="text-gray-800">Name</span>
+					<span class="text-gray-800">characteristics</span>
 				</th>
 				<th>
-					<span class="text-gray-800">Price</span>
+					<span class="text-gray-800">New cond</span>
 				</th>
 				<th>
-					<span class="text-gray-800">Created</span>
+					<span class="text-gray-800">good cond</span>
+				</th>
+				<th>
+					<span class="text-gray-800">poor cond</span>
+				</th>
+				<th>
+					<span class="text-gray-800">faulty cond</span>
+				</th>
+				<th>
+					<span class="text-gray-800">Locked</span>
 				</th>
 				<th class="text-right">Action</th>
 			</tr>
@@ -27,28 +46,34 @@
 			<tbody>
 				<tr *ngFor="let dev of devices" class="border">
 					<td>
-						{{dev?.caracteristics | titlecase }}
+						{{dev?.characteristics | titlecase }}
 					</td>
 					<td>
 						<span>${{dev?.newcondition}}</span>
 					</td>
 					<td>
-						<span>{{prod?.updatedAt  | date}}</span>
+						<span>${{dev?.goodcondition}}</span>
 					</td>
+					<td>
+						<span>${{dev?.poorcondition}}</span>
+					</td>
+					<td>
+						<span>${{dev?.faultycondition}}</span>
+					</td>
+					<td>
+						<span>${{dev?.islocked}}</span>
+					</td>
+
 					<td class="text-right">
 						<button class="action_icon__btn" mat-icon-button [matMenuTriggerFor]="menu">
 							<mat-icon>more_vert</mat-icon>
 						</button>
 						<mat-menu #menu="matMenu" xposition="before">
-							<button mat-menu-item>
-								<mat-icon>ads_click</mat-icon>
-								<span>browse</span>
-							</button>
-							<button mat-menu-item (click)="openUpdateDevice(prod._id)">
+							<button mat-menu-item (click)="openUpdateDevice(dev._id)">
 								<mat-icon>update</mat-icon>
 								<span>Update</span>
 							</button>
-							<button mat-menu-item  (click)="deleteDevice(prod._id)" >
+							<button mat-menu-item  (click)="deleteDevice(dev._id)" >
 								<mat-icon>delete</mat-icon>
 								<span>Delete</span>
 							</button>

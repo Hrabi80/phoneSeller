@@ -30,7 +30,10 @@ export class ProductService {
   deleteProduct(idProduct:string):Observable<any>{
     return this.http.delete(this.url + '/api/product/'+idProduct);
   }
-  updateProduct(productId:string,data : any ){    
+  updateProduct(productId:string,data : any ){ 
+    for (var pair of data.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+  }
     return this.http.put(this.url + '/api/product/'+productId,data);
   }
 

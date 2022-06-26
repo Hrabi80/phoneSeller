@@ -51,7 +51,7 @@ productRouter.route('/api/product')
         photo: url +'/images/products/'+ req.file.filename,
         category : req.body.category,
         upPrice: req.body.upPrice,
-      });
+      })
     Products.create(pro)
     .then((prod)=>{
         console.log('a new product has been recorded',prod);
@@ -70,6 +70,11 @@ productRouter.route('/api/product')
     res.end('Delete operation not supported on /api/service cuz it delete all');
 });
 
+
+function devicesaffectation(data,res){
+    data['devices']= res.devices;
+    return data;
+}
 productRouter.route('/api/product/:id_prod')
 .options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
 .get(cors.corsWithOptions,authenticate.verifyUser,(req,res,next)=>{
@@ -85,34 +90,40 @@ productRouter.route('/api/product/:id_prod')
     res.statusCode = 403;
     res.end('POST operation not supported on sercice/id');
 })
-.put(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin , upload.single('photo'),(req,res,next)=>{
+.put(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin , upload.single('photo'), (req,res,next)=>{
     const url = req.protocol + '://' + req.get('host');
     if(req.file){
         var pro = new Products({
-            _id : req.params.id_prod,
-            name: req.body.name,
-            description : req.body.description,
-            photo: url +'/images/products/'+ req.file.filename,
-            category : req.body.category,
-            upPrice: req.body.upPrice,
-          });
-    }else {
-    var pro = new Products({
-        _id : req.params.id_prod,
-        name: req.body.name,
-        description : req.body.description,
-        category : req.body.category,
-        upPrice: req.body.upPrice,
-      }); 
-    }
-    Products.findByIdAndUpdate(req.params.id_prod,{$set: pro},{new:true})
-    .then((prod)=>{
-        res.status.code=200;
-        res.setHeader('Content-Type','application/json');
-        res.json(prod);
-    },(err)=>next(err))
-    .catch((err)=>next(err));
-})
+             _id : req.params.id_prod,
+             name: req.body.name,
+             description : req.body.description,
+             photo: url +'/images/products/'+ req.file.filename,
+             category : req.body.category,
+             upPrice: req.body.upPrice,
+           });
+     }else {
+       var pro = new Products({
+         _id : req.params.id_prod,
+         name: req.body.name,
+         description : req.body.description,
+         category : req.body.category,
+         upPrice: req.body.upPrice,
+       }); 
+     }
+     Products.findById(req.params.id_prod).then( async (myprod)=>{
+         var data = pro;
+         data = await devicesaffectation(data,myprod);
+         Products.updateOne({ _id: req.params.id_prod }, { $set: data },{new:true}).then((prod)=>{
+            res.status.code=200;
+            res.setHeader('Content-Type','application/json');
+            res.json(prod);
+         },(err)=>next(err))
+         .catch((err)=>next(err));
+     },(err)=>next(err))
+     .catch((err)=>next(err));
+    })
+
+    
 .delete(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next)=>{
     Products.findByIdAndRemove(req.params.id_prod)
     .then((resp)=>{

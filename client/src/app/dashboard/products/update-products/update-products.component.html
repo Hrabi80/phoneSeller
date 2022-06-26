@@ -48,7 +48,7 @@
           <button
           class="px-5 py-2 text-white mt-5 rounded font-medium"
           style="background-color: var(--blue);"
-          [disabled]="productform.pristine || productform.invalid"
+          
           (click)="updateProduct()">
           Update product
           </button>
@@ -60,3 +60,6 @@
   </div>
 
 </mat-dialog-content>
+<!-- 
+  [disabled]="productform.pristine || productform.invalid"
+-->

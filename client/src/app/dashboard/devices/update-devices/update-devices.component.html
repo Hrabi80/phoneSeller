@@ -1,1 +1,56 @@
-<p>update-devices works!</p>
+
+
+  <div class="container">
+    <div class="grid grid-cols-12 gap-4 lg:gap-8 xxl:gap-16">
+      <div class="contact__form col-span-12 lg:col-span-12">
+        <div class="mb-8">
+          <h3>Update the device with characteristics : {{data.characteristics}} </h3>
+          <p></p>
+        </div>
+        <form [formGroup]="deviceform">
+            <input type="text" 
+            placeholder="15GB RAM, 30GB ..." 
+            class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5" 
+            formControlName="characteristics"
+            [(ngModel)]="this.deviceToUpdate.characteristics"
+            />
+            <input
+              type="number"
+              placeholder="price of a new condition"
+              class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+              formControlName="newcondition"
+              [(ngModel)]="this.deviceToUpdate.newcondition"
+            />
+          <input type="text"
+           placeholder="price of a good condition"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5" 
+           formControlName="goodcondition"
+           [(ngModel)]="this.deviceToUpdate.goodcondition"
+           />
+           <input type="text"
+           placeholder="price of a good condition"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5" 
+           formControlName="poorcondition"
+           [(ngModel)]="this.deviceToUpdate.poorcondition"
+           />
+           <input type="text"
+           placeholder="price of a good condition"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5" 
+           formControlName="faultycondition"
+           [(ngModel)]="this.deviceToUpdate.faultycondition"
+           />
+          
+          <button 
+          class="px-5 py-2 text-white mt-5 rounded font-medium"
+          style="background-color: var(--blue);"
+          [disabled]="deviceform.pristine || deviceform.invalid" 
+          (click)="updateDevice()">
+          Update device
+          </button>
+        </form>
+      </div>
+      
+
+    </div>
+  </div>
+
