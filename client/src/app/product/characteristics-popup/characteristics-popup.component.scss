@@ -1,0 +1,35 @@
+.popup{
+  padding: 10px;
+  width: 35vw;
+  .title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h3{
+      color: var(--purple);
+    }
+  }
+  .flex-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .left-side{
+      img{
+        max-width: 200px;
+        max-height: 200px;
+      }
+    }
+    .spacer{
+      width: 5%;
+    }
+    .right-side{
+      li{
+        font-size: large;
+      }
+      li:hover{
+        color: var(--purple);
+        cursor: pointer;
+      }
+    }
+  }
+}

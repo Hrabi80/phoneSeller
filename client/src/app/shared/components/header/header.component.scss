@@ -10,6 +10,18 @@
   }
   color : white;
 }
+.ll_header.navbar-inverse{
+  padding: 15px 0;
+  @apply bg-gray-50;
+  &.top-fixed {
+    @apply fixed -inset-x-0 top-0;
+    padding: 15px 0;
+    z-index: 9999;
+    background-color: white;
+    transition: background-color 0.5s ease;
+  }
+  color : rgb(82, 82, 82);
+}
 .logo {
   max-width: 120px;
 }
@@ -24,6 +36,10 @@
     width: $iconSize;
     line-height: $iconSize;
   }
+}
+
+.shop{
+  align-items: right;
 }
 
 @media (min-width: 768px) {

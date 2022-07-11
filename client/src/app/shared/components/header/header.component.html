@@ -1,17 +1,23 @@
 <header class="ll_header" [class.top-fixed]="topFixed" [ngClass]="{ 'bg-gray-50 shadow': topFixed && isScrolled }">
   <div class="container">
     <div class="flex items-center">
+
+
       <div class="flex items-center">
         <a class="logo" [routerLink]="['']">
           <img src="assets/images/logov1.jpg" alt="Logo" class="logo-img"/>
         </a>
-        <!-- <span>world wide nation</span> -->
         <ul class="flex item-center ml-5" *ngIf="!isLessThenLargeDevice && menuList && menuList.length">
           <li *ngFor="let menu of menuList">
-            <a mat-button [routerLink]="[menu.path]" routerLinkActive="bg-gray-100" class="text-lg font-bold py-2 px-5">{{ menu.name }}</a>
+            <a mat-button [routerLink]="[menu.path]"  class="text-lg font-bold py-2 px-5">{{ menu.name }}</a>
           </li>
         </ul>
       </div>
+      <button *ngIf="isLoggedIn"
+       mat-icon-button 
+       class="_sidenav__toggler ml-auto md:ml-3 ms-sm-3 md:flex ml-auto shop">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
       <button
         *ngIf="isLessThenLargeDevice"
         (click)="toggleSidenav.emit()"
@@ -28,22 +34,31 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="openLogin()">
+
+          <button mat-menu-item (click)="openLogin()"  *ngIf='!isLoggedIn' >
             <mat-icon>login</mat-icon>
             <span>Login</span>
           </button>
-          <button mat-menu-item (click)="openSignup()">
+          <button mat-menu-item (click)="openSignup()"  *ngIf='!isLoggedIn'>
             <mat-icon>input</mat-icon>
-            <span>signup</span>        </button>
+            <span>Signup</span>
+          </button>
+
+
+          <button mat-menu-item routerLink="/profile"  *ngIf='isLoggedIn'>
+            <mat-icon>home</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item (click)="logout()"  *ngIf='isLoggedIn'>
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+
         </mat-menu>
-        <!-- <a [routerLink]="['/auth/login']"   class="text-lg font-bold py-2 px-5" style="background-color:#E8D3D0">Login</a> -->
-        <!-- 
-<a (click)="openLogin()"   class="text-lg font-bold py-2 px-5" style="background-color:#E8D3D0">Login</a>
-        <a (click)="openSignup()"  class="text-lg font-bold py-2 px-5 ml-2" style="background-color:#89A6CE">Join Now</a>
-        -->
-        
-        <!-- <a [routerLink]="['/auth/signup']"  class="text-lg font-bold py-2 px-5 ml-2" style="background-color:#89A6CE">Join Now</a> -->
       </div>
+
+
+
     </div>
   </div>
 </header>

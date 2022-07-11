@@ -1,0 +1,168 @@
+<div>
+	<!-- User Start -->
+	<div class="flex flex-wrap">
+		<div class="flex space-x-3 bg-primary rounded-md px-5 py-3 w-full sm:w-1/2">
+			<div class="w-16 h-16 rounded-full overflow-hidden shadow-md">
+				<img src="assets/images/avatar.png" alt="" class="w-full h-full object-cover" >
+			</div>
+			<div class="text-white">
+				<h5 *ngIf='!user?.firstname && !user?.lastname'>fullname unknown</h5>
+				<h5 *ngIf='user?.firstname || user?.lastname'>{{user?.firstname}} {{user?.lastname}}</h5>
+				<p class="leading-normal text-white">
+					<span class="font-medium">Email</span>: {{user.username}}</p>
+			</div>
+		</div>
+		
+	</div>
+	<!-- User End -->
+	<!-- User Meta Start -->
+	<div class="border bg-white mt-8 rounded-md">
+		<div class="flex p-4 bg-gray-200">
+			<h6 class="text-normal">Primary Information</h6>
+			<button class="text-blue-400 hover:text-accent ml-auto flex items-center" (click)="openPrimaryInfo()">
+				<mat-icon class="_edit_icon mr-2" >edit</mat-icon>
+				Edit</button>
+		</div>
+		<div class="flex flex-wrap p-4">
+			<div class="w-full sm:w-1/2">
+				<div class="ll-dataset">
+					<div class="ll-dataset__label">
+						Email:
+					</div>
+					<div class="ll-dataset__value">
+						{{user.username}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						Number:
+					</div>
+					<div class="ll-dataset__value" *ngIf="!user?.phone">
+						+080-0000-0000
+					</div>
+					<div class="ll-dataset__value" *ngIf="user?.phone">
+						{{user?.phone}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						password:
+					</div>
+					<div class="ll-dataset__value" >
+						********
+					</div>
+				</div>
+			</div>
+			<div class="w-full sm:w-1/2 mt-4 sm:mt-0">
+				<div class="ll-dataset">
+					<div class="ll-dataset__label">
+						firstname:
+					</div>
+					<div class="ll-dataset__value" *ngIf="user?.firstname">
+						{{user?.firstname}}
+					</div>
+					<div class="ll-dataset__value" *ngIf="!user?.firstname">
+						unknown firstname
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						lastname:
+					</div>
+					<div class="ll-dataset__value" *ngIf="!user?.lastname">
+						unknown lastname
+					</div>
+					<div class="ll-dataset__value" *ngIf="user?.lastname">
+						{{user?.lastname}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- User Meta End -->
+	<!-- User Meta Start -->
+	<div class="border bg-white mt-8 rounded-md">
+		<div class="flex p-4 bg-gray-200">
+			<h6 class="text-normal">shipping address Information</h6>
+			<button class="text-blue-400 hover:text-accent ml-auto flex items-center" (click)="openShipping()">
+				<mat-icon class="_edit_icon mr-2" >edit</mat-icon>
+				Edit
+			</button>
+		</div>
+		<div class="flex flex-wrap p-4">
+			<div class="w-full sm:w-1/2">
+				<div class="ll-dataset">
+					<div class="ll-dataset__label">
+						Street address:
+					</div>
+					<div class="ll-dataset__value" *ngIf='!user?.street'>
+						Street adress unknown
+					</div>
+					<div class="ll-dataset__value" *ngIf='user?.street'>
+						{{user?.street}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						City :
+					</div>
+					<div class="ll-dataset__value" *ngIf='!user?.city'>
+						City name unknown
+					</div>
+					<div class="ll-dataset__value" *ngIf='user?.city'>
+						{{user?.city}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						State :
+					</div>
+					<div class="ll-dataset__value" *ngIf='!user?.state'>
+						State is unknown 
+					</div>
+					<div class="ll-dataset__value" *ngIf='user?.state'>
+						{{user?.state}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						Zip code :
+					</div>
+					<div class="ll-dataset__value"  *ngIf='!user?.zip'>
+						Zip code unknown
+					</div>
+					<div class="ll-dataset__value"  *ngIf='user?.zip'>
+						{{user?.zip}}
+					</div>
+				</div>
+			</div>
+			<div class="w-full sm:w-1/2 mt-4 sm:mt-0">
+				<div class="ll-dataset">
+					<div class="ll-dataset__label">
+						Paypal adress :
+					</div>
+					<div class="ll-dataset__value" *ngIf='!user?.paypal'>
+						Paypal adress is unknown
+					</div>
+					<div class="ll-dataset__value" *ngIf='user?.paypal'>
+						{{user?.paypal}}
+					</div>
+				</div>
+				<div class="ll-dataset mt-4">
+					<div class="ll-dataset__label">
+						Zelle Adress:
+					</div>
+					<div class="ll-dataset__value" *ngIf='!user?.zelle'>
+						zelle adress is unknown
+					</div>
+					<div class="ll-dataset__value" *ngIf='user?.zelle'>
+						{{user?.zelle}}
+					</div>
+				</div>
+			
+			
+			</div>
+		</div>
+	</div>
+	<!-- User Meta End -->
+</div>

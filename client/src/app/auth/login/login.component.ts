@@ -40,54 +40,39 @@ export class LoginComponent implements OnInit {
         let mm=localStorage.getItem('access_token');
         let jwtData = mm!.split('.')[1];
         let decodedJwtJsonData = window.atob(jwtData);
-        
         let decodedJwtData = JSON.parse(decodedJwtJsonData);
-
         let id = decodedJwtData._id;
+        localStorage.setItem('myuser_id', id); 
         this.service.getUserById(id).then((res:any)=>{
            this.isAdmin= res.data.admin;
-          console.log("role",this.isAdmin); 
-          localStorage.setItem('isAdmin',JSON.stringify(this.isAdmin));        
-        //  localStorage.setItem('myuser', JSON.stringify(res.data));
+          localStorage.setItem('isAdmin',JSON.stringify(this.isAdmin));       
           swal.fire(
             `welcome`,
             'You logged in successfully !',
             'success'
           )
         })
-
         console.log('jwtData: ' + jwtData);
         console.log('decodedJwtJsonData: ' + decodedJwtJsonData);
         console.log('decodedJwtData: ' + decodedJwtData);
-        console.log('Is admin ??? : ' + id);
-
-
         setTimeout(() => {
-          
           if(this.isAdmin == true){
-           // this.router.navigate(['/home'])$
-           console.log("admin");
-           this.router.navigate(['/dashboard']);
-
+           this.router.navigate(['/dashboard-naim-adminvv1']);
           }else{
-            console.log("not addd");
-           // this.router.navigate(['/home'])
+            location.reload();
           }
         }, 2500);
-        //this.router.navigate(['/profile'])
       },
       err => err = 'Could not authenticate'
     )
     }
 
     fbLogin() {
-      
       this.fbservice.fbLogin().then(() => {
         console.log('User has been logged in');
         setTimeout(() => {
          this.router.navigate(['/dashboard']);
         }, 5000);
-        
       });  
     }
 

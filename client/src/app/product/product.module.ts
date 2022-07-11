@@ -8,9 +8,10 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductHeroComponent } from './product-list/product-hero/product-hero.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { CharacteristicsPopupComponent } from './characteristics-popup/characteristics-popup.component';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailsComponent, ProductHeroComponent],
+  declarations: [ProductListComponent, ProductDetailsComponent, ProductHeroComponent, CharacteristicsPopupComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,
@@ -18,6 +19,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatExpansionModule,
     NgParticlesModule,
     NgxSkeletonLoaderModule
-  ]
+  ],
+  providers:[CharacteristicsPopupComponent]
 })
 export class ProductModule { }

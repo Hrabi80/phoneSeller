@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'll-dashboard-layout',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class DashboardLayoutComponent implements OnInit {
   isLessThenLargeDevice;
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router,private AuthService: AuthService) {}
 
   ngOnInit(): void {
     this.breakpointObserver.observe(['(max-width: 1199px)']).subscribe(({ matches }) => {
@@ -18,6 +19,7 @@ export class DashboardLayoutComponent implements OnInit {
     });
   }
   onLogout(): void {
-    this.router.navigate(['auth/login']);
+    this.AuthService.logout();
+    this.router.navigate(['/']);
   }
 }

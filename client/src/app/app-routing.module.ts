@@ -34,11 +34,13 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'doc',
-    loadChildren: () => import('./doc/doc.module').then(m => m.DocModule)
+    path: 'profile',
+
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+    canActivate : [AuthGuard]
   },
   {
-    path: 'dashboard',
+    path: 'dashboard-naim-adminvv1',
     
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate : [AdminGuard]

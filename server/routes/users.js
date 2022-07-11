@@ -64,61 +64,30 @@ router.route('/getUserById/:userId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-module.exports = router;
-/*
-router.post('/login',cors.corsWithOptions,(req,res,next)=>{
-  
-  if(!req.session.user){
-    var authHeader = req.headers.authorization;
-    if(!authHeader){
-      var err = new Error('Your are not authenticated');
-      res.setHeader('WWW-Authenticate','Basic');
-      err.status=403;
-      return next(err);
-    }
-    var auth = new Buffer.from(authHeader.split(' ')[1],'base64').toString().split(':');
-    var username = auth[0];
-    var password = auth[1];
-    User.findOne({username:username})
-    .then((user)=>{
-      if(user === null){
-        var err = new Error('User with username: '+username+' does not exist');
-        res.setHeader('WWW-Authenticate','Basic');
-        err.status=403;
-        return next(err);
-      }
-      else if(user.password != password){
-        var err = new Error('The password is incorrect');
-        res.setHeader('WWW-Authenticate','Basic');
-        err.status=403;
-        return next(err);
-      }
-      else if(user.username === username && user.password === password){
-        req.session.user='authenticated';
-        res.statusCode=200;
-        res.setHeader('Content-Type','text/plain');
-        res.end('You are authenticated!');
-      }
-    })
-    .catch((err)=> next(err));
-  }
-  else{
-      res.statusCode = 200;
-      res.setHeader('Content-Type','text/plain');
-      res.end('You are already authenticated!');
-  }
-});
-*/
-/*
-router.get('/logout',cors.corsWithOptions,(req,res)=>{
-  if(req.session){
-    req.session.destroy();
-    res.clearCookie('session-id');
-    res.redirect('/');
-  }
-  else{
-    var err = new Error('You are not logged in');
-  }
-});
-*/
 
+router.route('/api/updateUser/:userId')
+.options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
+.post(cors.corsWithOptions,(req,res,next)=>{
+    res.statusCode = 403;
+    res.end('POST operation not supported on /api/category/id');
+})
+.put(cors.corsWithOptions,authenticate.verifyUser,(req,res,next)=>{
+    User.findByIdAndUpdate(req.params.userId,{$set: req.body},{new:true})
+    .then((updatedUser)=>{
+        res.status.code=200;
+        res.setHeader('Content-Type','application/json');
+        res.json(updatedUser);
+    },(err)=>next(err))
+    .catch((err)=>next(err));
+})
+.delete(cors.corsWithOptions,authenticate.verifyUser,(req,res,next)=>{
+    Categories.findByIdAndRemove(req.params.id_cat)
+    .then((cat)=>{
+        res.statusCode=200;
+        res.setHeader('Content-Type','application/json');
+        res.json(cat);
+    },(err)=>next(err))
+    .catch((err)=>next(err));
+});
+
+module.exports = router;

@@ -6,7 +6,28 @@
       border: 0;
     }
   }
+  mat-radio-button{
+    color: #848484;
+    padding: 7px 7px;
+    border-right: 1px solid #d6d6d6;
+    &:last-child {
+      border: 0;
+    }
+  }
 }
+.img-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .product-photo{
+    width: auto;
+    height: 20vh;
+  }
+}
+.price-value{
+  color: var(--purple);
+}
+
 .ll-content {
   h2,
   h3,
@@ -65,3 +86,6 @@
     line-height: 2.7rem;
   }
 }
+
+
+

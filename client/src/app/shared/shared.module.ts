@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FancyCardsComponent } from './components/fancy-cards/fancy-cards.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule ,FormsModule,Validators} from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -32,7 +33,8 @@ const commonModules = [
   MatSidenavModule,
   MatListModule,
   MatDialogModule,
-  MatMenuModule
+  MatMenuModule,
+  MatRadioModule
 ];
 
 @NgModule({

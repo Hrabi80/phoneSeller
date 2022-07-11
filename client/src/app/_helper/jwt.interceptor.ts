@@ -9,15 +9,13 @@ import { environment } from 'src/environments/environment';
 
 export class JwtInterceptor implements HttpInterceptor {
     private _URLPattern = environment.api_url+'/api';
+    private _URLPattern2 = environment.api_url+'/users/api';
     constructor(private auth: AuthService ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
        //console.log('intercepted', req);
-        if(req.url.startsWith(this._URLPattern)){
+        if(req.url.startsWith(this._URLPattern) || req.url.startsWith(this._URLPattern2)){
           const token = this.auth.getToken();
-         //  let token:any = JSON.stringify(localStorage.getItem('access_token')).token;
-      //    const user = JSON.parse(localStorage.getItem('access_token'));
-   //     let token:any = user.token;
         req = req.clone({
           setHeaders: {
             Authorization: `Bearer ${token}`

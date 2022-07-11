@@ -97,12 +97,14 @@
       <div class="product-card" *ngFor="let prod of products" [attr.data-index]="i">
         <div class="badge">Up to ${{prod.upPrice}}</div>
         <div class="product-tumb">
-          <img src="{{prod.photo}}" alt="">
+          <img src="{{prod.photo}}" alt="" (click)="openPopup(prod._id)">
         </div>
         <div class="product-details">
           <span class="product-catagory">iPhone</span>
-          <h4><a href="">{{prod.name}}</a></h4>
-            <button class="sell-btn" mat-flat-button >sell now</button>
+          <h4><a (click)="openPopup(prod._id)">{{prod.name}}</a></h4>
+            <button class="sell-btn" mat-flat-button (click)="openPopup(prod._id)">
+              Sell now
+            </button>
           <!-- <div class="product-bottom-details">
             <div class="product-price">Up to ${{prod.upPrice}}</div>
             <div class="product-links">

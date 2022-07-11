@@ -59,8 +59,6 @@ export function appInitializer(accountService: FacebookService) {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-
-        
     },
     ,
     {

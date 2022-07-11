@@ -7,6 +7,7 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital@1&family=Righteous&display=swap');
 @include mat.core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -46,7 +47,8 @@ body {
 }
 body {
   margin: 0;
-  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+ // font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+  font-family: 'Righteous', cursive;
 }
 .bg-light {
   background-color: #fbfbfb;

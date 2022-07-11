@@ -1,0 +1,69 @@
+
+<mat-dialog-content>
+  <div class="container">
+    <div class="grid grid-cols-12 gap-4 lg:gap-8 xxl:gap-16">
+      <div class="contact__form col-span-12 lg:col-span-12">
+        <div class="mb-8">
+          <h3>Update Information </h3>
+ 
+        </div>
+        <form [formGroup]="userform">
+           
+            <input type="text"
+            placeholder="street adress"
+            class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+            formControlName="street"
+            [(ngModel)]="userToUpdate.street"
+            />
+            <input
+              type="text"
+              class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+              formControlName="city"
+              placeholder="city"
+              [(ngModel)]="this.userToUpdate.city" 
+
+            />
+          <input type="text"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+           formControlName="state"
+           placeholder="state"
+           [(ngModel)]="this.userToUpdate.state"
+           />
+           <input type="number"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+           formControlName="zip"
+           placeholder="zip code"
+           [(ngModel)]="this.userToUpdate.zip"
+           />
+           <input type="text"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+           placeholder="paypal adress"
+           formControlName="paypal"
+           [(ngModel)]="this.userToUpdate.paypal"
+           />
+           <input type="text"
+           placeholder="Zelle adress"
+           class="border border-gray-200 p-2 px-4 w-full rounded-sm mt-5"
+           formControlName="zelle"
+           [(ngModel)]="this.userToUpdate.zelle"
+           />
+         
+           <br>
+          <button
+          class="px-5 py-2 text-white mt-5 rounded font-medium"
+          style="background-color: var(--blue);"
+          
+          (click)="updateUser()">
+          Update
+          </button>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+
+</mat-dialog-content>
+<!-- 
+  [disabled]="productform.pristine || productform.invalid"
+-->

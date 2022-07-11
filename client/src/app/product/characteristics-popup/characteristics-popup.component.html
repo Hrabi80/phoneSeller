@@ -1,0 +1,20 @@
+<div class="popup">
+    <div class="title">
+      <h3>{{product.name}}</h3>
+    </div>
+    <div class="flex-container">
+      <div class="left-side">
+        <img src="{{product.photo}}" alt="product image">
+      </div>
+
+      <div class="right-side">
+        <ul>
+          <li *ngFor="let item of listchar" routerLink="/products/product-details/{{item._id}}/{{product._id}}" (click)="close()">
+            {{item.characteristics}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+</div>
+

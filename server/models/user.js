@@ -18,7 +18,27 @@ const UserSchema = new Schema({
     },
     email:{
         type:String,
-        
+    },
+    phone:{
+        type: String,
+    },
+    street:{
+        type:String,
+    },
+    city:{
+        type:String,
+    },
+    state:{
+        type: String,
+    },
+    zip:{
+        type:String,
+    },
+    paypal:{
+        type: String,
+    },
+    zelle:{
+        type:String,
     }
 });
 UserSchema.plugin(passportLocalMongoose);
