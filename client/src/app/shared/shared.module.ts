@@ -20,6 +20,7 @@ import { FancyCardsComponent } from './components/fancy-cards/fancy-cards.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule ,FormsModule,Validators} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import { FilterPipe } from './filter.pipe';
 
 
 
@@ -38,7 +39,7 @@ const commonModules = [
 ];
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, FeatureComponent, BaseLayoutComponent, LoaderComponent, SidenavComponent, FancyCardsComponent],
+  declarations: [HeaderComponent, FooterComponent, FeatureComponent, BaseLayoutComponent, LoaderComponent, SidenavComponent, FancyCardsComponent, FilterPipe],
   imports: [CommonModule, RouterModule, ...commonModules,FormsModule,
            ReactiveFormsModule],
   exports: [HeaderComponent, FooterComponent, BaseLayoutComponent, FeatureComponent, LoaderComponent, SidenavComponent,FancyCardsComponent, ...commonModules,

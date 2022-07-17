@@ -7,7 +7,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { DashboardIndexComponent } from './dashboard-index/dashboard-index.component';
 import { SharedModule } from '../shared/shared.module';
-import { DashboardSavedItemComponent } from './dashboard-saved-item/dashboard-saved-item.component';
+import { DashboardSavedItemComponent } from './list-contacts/dashboard-saved-item.component';
 import { DashboardProfileComponent } from './dashboard-profile/dashboard-profile.component';
 import { DashboardOrderComponent } from './dashboard-order/dashboard-order.component';
 import { ListProductsComponent } from './products/list-products/list-products.component';

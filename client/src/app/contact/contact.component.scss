@@ -1,0 +1,82 @@
+.about-container{
+  margin-top: 20px;
+}
+.about {
+  &__title {
+    max-width: 635px;
+  }
+  &__text {
+    p {
+      font-size: 17px;
+      line-height: 27px;
+      color: #6b7280;
+    }
+  }
+  &__img {
+    $iconSize: 90px;
+    .mat-icon {
+      font-size: $iconSize;
+      width: $iconSize;
+      height: $iconSize;
+      line-height: $iconSize;
+      opacity: 0.5;
+    }
+  }
+}
+.experience {
+  h2 {
+    font-size: 36px;
+    line-height: 46px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .experience {
+    h6 {
+      font-size: 15px;
+    }
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .about {
+    &__title {
+      font-size: 2rem;
+      line-height: 3rem;
+      max-width: 512px;
+    }
+  }
+  .experience {
+    h2 {
+      font-size: 34px;
+      line-height: 42px;
+    }
+    h6 {
+      font-size: 15px;
+      line-height: 22px;
+    }
+  }
+}
+@media (max-width: 991px) {
+  .about {
+    &__title {
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+    &__img {
+      display: block;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .experience {
+    h2 {
+      font-size: 34px;
+      line-height: 42px;
+    }
+    h6 {
+      font-size: 15px;
+      line-height: 22px;
+    }
+  }
+}
+

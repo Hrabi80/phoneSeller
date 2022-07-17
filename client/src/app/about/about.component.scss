@@ -1,3 +1,6 @@
+.about-container{
+  margin-top: 20px;
+}
 .about {
   &__title {
     max-width: 635px;
@@ -76,82 +79,4 @@
     }
   }
 }
-// Teams
-.member {
-  @apply relative;
-  &__image {
-    img {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    &:after {
-      z-index: 1;
-      content: '';
-      @apply absolute;
-      width: 100%;
-      height: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 1;
-      transition: opacity 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
-      background: linear-gradient(180deg, transparent, var(--accent));
-      opacity: 0;
-    }
-  }
-  &__desc {
-    z-index: 2;
-    @apply absolute;
-    @apply text-white;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    .name {
-      opacity: 0;
-      visibility: hidden;
-      transition-delay: 0.25s;
-      transform: translateY(10px);
-      transition: all 0.45s cubic-bezier(0.23, 0.88, 0.34, 0.99);
-    }
-    .designation {
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.45s cubic-bezier(0.23, 0.88, 0.34, 0.99);
-      transform: translateY(10px);
-    }
-  }
-  &__social {
-    z-index: 2;
-    @apply absolute;
-    @apply text-white;
-    width: 100%;
-    top: 30px;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.65s cubic-bezier(0.05, 0.2, 0.1, 1);
-  }
-  &:hover {
-    .member__image {
-      &:after {
-        opacity: 1;
-        height: 85%;
-      }
-    }
-    .member__social {
-      opacity: 1;
-    }
-    .member__desc {
-      .name {
-        transition-delay: 0.25s;
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      .designation {
-        transition-delay: 0.33s;
-        opacity: 0.7;
-        visibility: visible;
-        transform: translateY(0);
-      }
-    }
-  }
-}
+

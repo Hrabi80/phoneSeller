@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { product } from 'src/app/models/product';
 import { SubscriptionContainer } from 'src/app/_helper/subscription-container';
 import { ProductService } from 'src/app/_services/product.service';
+import { FilterPipe } from 'src/app/filter.pipe';
 import { CharacteristicsPopupComponent } from '../characteristics-popup/characteristics-popup.component';
 @Component({
   selector: 'll-product-list',
@@ -16,6 +17,8 @@ export class ProductListComponent implements OnInit,OnDestroy  {
   advanceSearchExpanded: boolean = false;
   products : Array<product>=[];
   cat : string;
+  filterBy;
+  filter : FilterPipe;
   subs = new SubscriptionContainer();
   constructor(private router : ActivatedRoute,
                public dialog: MatDialog,

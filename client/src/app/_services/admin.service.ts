@@ -3,6 +3,7 @@ import { HttpClient , HttpHeaders,HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { contact } from '../models/contact';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,15 +12,12 @@ export class AdminService {
   constructor(private _http: HttpClient) { }
 
 
-  getAllService(){
-    return this._http.get(this._url+'/service');
+  getAllContacts():Observable<Array<contact>>{
+    return this._http.get<Array<contact>>(this._url+'/api/contact');
   }
-  getAllCategories(): Observable<any>{
-    return this._http.get(this._url+'/category').pipe(
-      catchError(this.errorMgmt)
-    );
+  deleteContact(idContact:string):Observable<any>{
+    return this._http.delete(this._url + '/api/contact/'+idContact);
   }
-
   getService(id){
     return this._http.get(this._url+'/api/service/'+id);
   }
@@ -39,14 +37,7 @@ export class AdminService {
       .set('Content-Type', 'application/json');
       return this._http.post(this._url+'/api/category',data, {headers: headers})
   }
-  addGallery(data){
-      return this._http.post(this._url+'/api/gallery',data, {
-        reportProgress: true,
-        observe: 'events'
-      })
-      .pipe(catchError(this.errorMgmt))
-        
-  }
+
   
   deleteService(id){
     const headers = new HttpHeaders()
@@ -80,54 +71,10 @@ export class AdminService {
     return this._http.put(this._url+'/api/category/'+id,data,{headers:headers})
   }
 
-   // UPLOAD  PRODUCT 
-
-   addProduct(data,id): Observable<any> {
-    return this._http.post(this._url+'/api/product/'+id, data, {
-      reportProgress: true,
-      observe: 'events'
-    }).pipe(
-      catchError(this.errorMgmt)
-    )
-  }
- // UPLOAD TECHNIC
-  addTechnic(data,id): Observable<any> {
-    return this._http.post(this._url+'/api/technic/'+id, data, {
-      reportProgress: true,
-      observe: 'events'
-    }).pipe(
-      catchError(this.errorMgmt)
-    )
-  }
 
 
-  errorMgmt(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
-  }
 
 
-  //GET PRODDUCT
-
-  GetProductByService(id): Observable<any>{
-    return this._http.get(this._url+'/product/'+id).pipe(
-      catchError(this.errorMgmt)
-    )
-  }
-
-  GetTechs(id): Observable<any>{
-    return this._http.get(this._url+'/technic/'+id).pipe(
-      catchError(this.errorMgmt)
-    )
-  }
 
 }
 

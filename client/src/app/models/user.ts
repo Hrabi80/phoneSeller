@@ -5,6 +5,7 @@ export class user{
   username!:string;
   firstname!:number;
   lastname!:string;
+  password!:string;
   phone!: string;
   photo!:string;
   street!:string;

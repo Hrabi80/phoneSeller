@@ -1,21 +1,18 @@
 const mongoose = require('mongoose');
-//const { text } = require('express');
 const Schema = mongoose.Schema;
 
 const contactSchema = new Schema({
     name: {
         type:String,
-        required:true,
     },
-    mail:{
+    email:{
         type:String,
         required:true,
     },
-    tel:{
+    phone:{
         type:Number,
-        required:true,
-        min:10000000,
-        max:99999999
+        // min:10000000,
+        // max:99999999
     },
     message:{
         type:String,

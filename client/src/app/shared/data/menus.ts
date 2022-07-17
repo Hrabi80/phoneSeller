@@ -12,17 +12,18 @@ export const menuList: Menu[] = [
     path: '/products',
     name: 'Sell'
   },
-  {
-    path: '/about',
-    name: 'About'
-  },
+  
   {
     path: '/contact',
     name: 'How it works ?'
   },
   {
+    path: '/about',
+    name: 'About Us'
+  },
+  {
     path: '/contact',
-    name: 'track order'
+    name: 'Track order'
   },
   /*
   {

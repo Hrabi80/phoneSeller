@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FacebookService } from './_services/facebook.service';
 import { environment } from 'src/environments/environment';
 import { AdminGuard } from './_helper/admin.guard';
+import { FilterPipe } from './filter.pipe';
 
 
 export function appInitializer(accountService: FacebookService) {
@@ -44,7 +45,7 @@ export function appInitializer(accountService: FacebookService) {
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FilterPipe],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule,
     NgxSkeletonLoaderModule,
     HttpClientModule,

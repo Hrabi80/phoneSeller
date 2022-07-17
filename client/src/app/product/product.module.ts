@@ -9,9 +9,10 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductHeroComponent } from './product-list/product-hero/product-hero.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CharacteristicsPopupComponent } from './characteristics-popup/characteristics-popup.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailsComponent, ProductHeroComponent, CharacteristicsPopupComponent],
+  declarations: [ProductListComponent, ProductDetailsComponent, ProductHeroComponent, CharacteristicsPopupComponent, FilterPipe],
   imports: [
     CommonModule,
     ProductRoutingModule,

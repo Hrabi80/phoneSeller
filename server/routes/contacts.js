@@ -9,7 +9,7 @@ const contactRouter = express.Router();
 contactRouter.use(bodyParser.json());
 
 contactRouter.route('/api/contact')
-.get(cors.cors,authenticate.verifyUser,(req,res,next)=>{
+.get(cors.cors,authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next)=>{
     Contacts.find({})
     .then((contacts)=>{
         res.status.code=200;
@@ -32,19 +32,11 @@ contactRouter.route('/contact')
 })
 .put(cors.corsWithOptions,(req,res,next)=>{
     res.statusCode = 403;
-    res.end('PUT operation not supported on /dishes');
+    res.end('PUT operation not supported on /contacts');
 })
-.delete(cors.corsWithOptions,authenticate.verifyUser,(req,res,next)=>{
-    Contacts.remove({})
-    .then((resp)=>{
-        res.status.Code=200;
-        res.setHeader('Content-Type','application/json');
-        res.json(resp);
-    },(err)=>next(err))
-    .catch((err)=>next(err));
-});
 
-contactRouter.route('contact/:id_mess')
+
+contactRouter.route('/api/contact/:id_mess')
 .options(cors.corsWithOptions,authenticate.verifyUser, (req,res)=>{ res.sendStatus(200); })
 .get(cors.cors,(req,res,next)=>{
     Contacts.findById(req.params.id_mess)

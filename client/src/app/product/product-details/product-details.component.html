@@ -39,8 +39,15 @@
         </blockquote>
         <div class="border-b px-5 pt-10 pb-12 text-center">
           <p class="text-gray-400 mb-4">This price can increase due to additional bookings</p>
-          <button mat-flat-button class="py-3 px-20 text-xl font-bold" style="background-color: var(--purple); color:white">Buy now</button>
+          <button 
+          mat-flat-button class="py-3 px-20 text-xl font-bold" 
+          *ngIf="isLoggedIn"
+          style="background-color: var(--purple); color:white">Get paid</button>
+          <p 
+          *ngIf="!isLoggedIn"
+         >login to continue</p>
         </div>
+        
         <!-- <div class="border mt-5 px-5 py-10 text-center">
           <p class="font-bold mb-3">Do you have any special requirements?</p>
           <button mat-stroked-button class="py-2 px-12 text-lg font-bold text-gray-700">Send us</button>
@@ -51,6 +58,12 @@
         <div class="border">
           <div class="border-b img-center pt-10 pb-10">
               <img src="{{product.photo}}" alt="product photo" class="product-photo">
+              <br>
+              <button 
+               *ngIf="isLoggedIn"
+              mat-flat-button class="py-3 px-20 text-xl font-bold" 
+              style="background-color: var(--purple); color:white">Add to cart</button>
+
           </div>
           <div class="border-b text-center pt-10 pb-10">
             <div class="text-accent text-4xl font-semibold price-value">€{{this.conditions[this.opt].price}} </div>
@@ -86,3 +99,4 @@
     </div>
   </div>
 </div>
+<br>

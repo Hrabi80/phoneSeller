@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { device } from 'src/app/models/device';
 import { product } from 'src/app/models/product';
 import { SubscriptionContainer } from 'src/app/_helper/subscription-container';
+import { AuthService } from 'src/app/_services/auth.service';
 import { DeviceService } from 'src/app/_services/device.service';
 import { ProductService } from 'src/app/_services/product.service';
 declare var $:any;
@@ -17,16 +18,19 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
   prodId :string;
   constructor(private router : ActivatedRoute,
               private service : DeviceService,
-              private productService : ProductService
+              private productService : ProductService,
+              private authService : AuthService
               ) { }
   device : device;
   product :product;
   subs= new SubscriptionContainer();
   opt : number=0;
   conditions =[];
+  isLoggedIn = false;
   ngOnInit(): void {
     this.id = this.router.snapshot.paramMap.get('id');
     this.prodId = this.router.snapshot.paramMap.get('prodId');
+    this.isLoggedIn = this.authService.loggedIn();
     this.subs.add = this.service.getDeviceById(this.id).subscribe((res:device)=>{
       this.device = res;
       this.conditions = [
