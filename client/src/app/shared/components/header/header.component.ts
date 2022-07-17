@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   isScrolled: boolean;
   menuList = [];
   isLessThenLargeDevice;
+  isTablet;
   baseURL = environment.frontURL+'/';
   currentURL : string;
   ishome : boolean = true;
@@ -46,6 +47,9 @@ export class HeaderComponent implements OnInit {
     this.menuList = staticMenuList;
     this.breakpointObserver.observe(['(max-width: 1199px)']).subscribe(({ matches }) => {
       this.isLessThenLargeDevice = matches;
+    });
+    this.breakpointObserver.observe(['(min-width:1190px)']).subscribe(({ matches }) => {
+      this.isTablet = matches;
     });
   }
 

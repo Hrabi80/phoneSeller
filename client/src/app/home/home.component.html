@@ -16,17 +16,17 @@
         <br>
         <br>
        
-        <button class="button-56" role="button">Start now</button>
+        <button class="button-56" role="button" (click)="scroll(target)">Start now</button>
       </div>
       <div class="col-span-12 md:col-span-6 lg:col-span-5 xxl:col-span-6 ll-image mt-10 md:mt-0">
-        <img class="hero ml-auto" src="assets/images/hero3.png" alt="Hero" />
+        <img class="hero ml-auto main-img" src="assets/images/hero3.png" alt="Hero" />
       </div>
     </div>
   </div>
 </div>
-
-<app-category></app-category>
-
+<div class="test" #target> 
+<app-category  id="categories"></app-category>
+</div>
 <div class="ll-service-area">
   <div class="container">
     <h1 class="ll-service__title text-center font-extralight mb-12">It's As Easy As 1, 2, 3.</h1>

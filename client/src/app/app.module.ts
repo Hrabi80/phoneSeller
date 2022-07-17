@@ -17,7 +17,8 @@ import { environment } from 'src/environments/environment';
 import { AdminGuard } from './_helper/admin.guard';
 import { FilterPipe } from './filter.pipe';
 
-
+declare const FB:any;
+declare const window : any;
 export function appInitializer(accountService: FacebookService) {
   return () => new Promise(resolve => {
       // wait for facebook sdk to initialize before starting the angular app

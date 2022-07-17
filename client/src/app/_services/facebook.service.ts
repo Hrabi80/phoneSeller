@@ -3,7 +3,7 @@ import { HttpClient , HttpHeaders,HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-
+declare const FB:any;
 @Injectable({
   providedIn: 'root'
 })

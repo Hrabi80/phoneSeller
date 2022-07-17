@@ -24,7 +24,13 @@ export class HomeComponent implements OnInit {
       }
     }
   };
+  
   constructor() {}
 
   ngOnInit(): void {}
+
+  scroll(el: HTMLElement) {
+    console.log("el",el)
+    el.scrollIntoView({behavior: 'smooth'});
+}
 }

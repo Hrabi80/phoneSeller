@@ -9,21 +9,16 @@ export const menuList: Menu[] = [
     name: 'Home'
   },
   {
-    path: '/products',
-    name: 'Sell'
-  },
-  
-  {
-    path: '/contact',
-    name: 'How it works ?'
-  },
-  {
-    path: '/about',
-    name: 'About Us'
+    path: '/how-it-works',
+    name: 'How It Works ?'
   },
   {
     path: '/contact',
-    name: 'Track order'
+    name: 'Contact Us'
+  },
+  {
+    path: '/',
+    name: 'Track Order'
   },
   /*
   {

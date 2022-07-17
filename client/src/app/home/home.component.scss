@@ -90,6 +90,7 @@
       font-weight: 700;
       line-height: 24px;
     }
+    
     p {
       font-size: 1.09rem;
     }
@@ -219,5 +220,11 @@
 @media (min-width: 768px) {
   .button-56 {
     padding: 0 40px;
+  }
+}
+@media (max-width: 550px) {
+  img{
+    width: 80vw !important;
+    height: 45vh;
   }
 }

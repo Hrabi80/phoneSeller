@@ -9,11 +9,11 @@ const baseLayoutRouting: Routes = [
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
   },
   {
-    path: 'to-remove',
+    path: 'how-it-works',
     loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
   },
   {
-    path: 'about',
+    path: 'contact',
     loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
   },
   {
