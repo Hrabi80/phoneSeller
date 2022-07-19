@@ -16,16 +16,9 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var deviceRouter = require('./routes/devices');
 var contactRouter = require('./routes/contacts');
+var cartRouter = require('./routes/cartRouter');
 
 
-/*
-var galleryRouter = require('./routes/galleries');
-var technicRouter = require('./routes/technics');
-
-var deviRouter = require('./routes/devis');
-var serviceRouter = require('./routes/services');
-var categoryRouter = require('./routes/categories');
-*/
 const mongoose = require('mongoose');
 const url = config.mongoUrl;
 const connect = mongoose.connect(url);
@@ -63,7 +56,7 @@ app.use('/users', usersRouter);
 app.use('',productsRouter);
 app.use('',deviceRouter);
 app.use('',contactRouter);
-
+app.use('/cart',cartRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*

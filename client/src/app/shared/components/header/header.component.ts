@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { menuList as staticMenuList } from '../../data/menus';
 import { MatDialog } from '@angular/material/dialog';
 import { from } from 'rxjs';
@@ -9,26 +9,37 @@ import { LoginComponent } from 'src/app/auth/login/login.component';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
-
+import { Subscription } from 'rxjs';
+import { HelperService } from 'src/app/_helper/helper.service';
+import { CartService } from 'src/app/_services/cart.service';
+import { Cart } from 'src/app/models/cart';
 @Component({
   selector: 'll-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy {
   @Input() topFixed: boolean;
   @Output() toggleSidenav = new EventEmitter();
   isScrolled: boolean;
   menuList = [];
+  //screen size
   isLessThenLargeDevice;
   isTablet;
+  //urls
   baseURL = environment.frontURL+'/';
   currentURL : string;
   ishome : boolean = true;
+  //loggin
   isLoggedIn : boolean = false;
   element = document.querySelector('.ll_header');
+  //cart
+  cartStatusSub$: Subscription;
+  cartItems: number;
   constructor(
+           private helper:HelperService,
            private router : Router,
+           private cartService : CartService,
            private authService : AuthService,
            private breakpointObserver: BreakpointObserver,
            public dialog: MatDialog) {
@@ -51,6 +62,29 @@ export class HeaderComponent implements OnInit {
     this.breakpointObserver.observe(['(min-width:1190px)']).subscribe(({ matches }) => {
       this.isTablet = matches;
     });
+
+    this.cartStatusSub$ = this.helper.cartStatus.subscribe((data) => {
+      console.log("data cart",data);
+        if (data === 'add') {
+          this.cartItems++;
+        } else if (data === 'remove') {
+          this.cartItems--;
+        } else if (data === 'updateStatus') {
+          this.getCartSize();
+        }
+      });
+  }
+  ngOnDestroy(): void {
+    this.cartStatusSub$.unsubscribe();
+  }
+
+  getCartSize(): void {
+    this.cartService
+      .getCartSize()
+      .subscribe((res:any) => {
+        this.cartItems = res.data;
+        console.log('cart',res);
+      });
   }
 
 
@@ -88,6 +122,7 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     this.authService.logout();
+    this.cartItems = undefined;
     location.reload();
   }
 }

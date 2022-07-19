@@ -4,6 +4,7 @@ import { device } from 'src/app/models/device';
 import { product } from 'src/app/models/product';
 import { SubscriptionContainer } from 'src/app/_helper/subscription-container';
 import { AuthService } from 'src/app/_services/auth.service';
+import { CartService } from 'src/app/_services/cart.service';
 import { DeviceService } from 'src/app/_services/device.service';
 import { ProductService } from 'src/app/_services/product.service';
 declare var $:any;
@@ -18,6 +19,7 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
   prodId :string;
   constructor(private router : ActivatedRoute,
               private service : DeviceService,
+              private cartService: CartService,
               private productService : ProductService,
               private authService : AuthService
               ) { }
@@ -44,13 +46,24 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
       this.product = res;
     })
  } 
- ngOnDestroy(): void {
-  this.subs.dispose();
- }
- selectOption(val) {
-  console.log("valueeee",val.value);
-    this.opt=val.value;
-   console.log("heeeeere",this.conditions[this.opt].description)
-}
+  ngOnDestroy(): void {
+    this.subs.dispose();
+  }
+  selectOption(val) {
+    console.log("valueeee",val.value);
+      this.opt=val.value;
+    console.log("heeeeere",this.conditions[this.opt].description)
+  }
+
+  addItemToCart(id:string,userId:string,qut=1){
+    let payload = {
+      productId: id,
+      userId:userId,
+      quantity :qut
+    }
+    this.cartService.addToCart(payload).subscribe((res:any)=>{
+      console.log("product added !")
+    })
+  }
 
 }

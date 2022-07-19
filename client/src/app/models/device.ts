@@ -9,5 +9,6 @@ export class device{
   poorcondition!:number;
   faultycondition!:number;
   productId!: product["_id"];
-  updatedAt : Date;
+  updatedAt! : Date;
+   qty!: number;
 }

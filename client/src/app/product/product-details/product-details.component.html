@@ -62,7 +62,9 @@
               <button 
                *ngIf="isLoggedIn"
               mat-flat-button class="py-3 px-20 text-xl font-bold" 
-              style="background-color: var(--purple); color:white">Add to cart</button>
+              style="background-color: var(--purple); color:white"
+              (click)="addItemToCart(id)"
+              >Add to cart</button>
 
           </div>
           <div class="border-b text-center pt-10 pb-10">

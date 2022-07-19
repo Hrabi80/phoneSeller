@@ -3,37 +3,62 @@ var router = express.Router();
 const bodyParser = require('body-parser');
 var authenticate = require('../authenticate');
 var passport = require('passport');
+const mongoose = require('mongoose');
 var cors = require('./cors');
 var User = require('../models/user');
+var Cart = require('../models/cart');
 
 router.use(bodyParser.json());
 router.post('/signup',cors.corsWithOptions, (req, res, next) => {
-  User.register(new User({username: req.body.username}), //refister() by passport mongoose plugin
-    req.body.password,(err, user) => {
-    if(err) {
-      res.statusCode = 500;
-      res.setHeader('Content-Type', 'application/json');
-      res.json({err: err});
-    }
-    else {
-      if(req.body.admin)
-        user.admin = req.body.admin;
-      user.save((err,user)=>{
-        if(err){
+  var cart = new Cart({
+    _id: new mongoose.Types.ObjectId(),
+  });
+  Cart.create(cart)
+    .then((mycart)=>{
+        console.log('a new cart has been recorded',mycart,"iddd",cart._id);
+        res.status = 200;
+        res.setHeader('Content-Type','application/json');
+        //user.cart = cart._id;
+        User.register(new User({username: req.body.username,cart:cart._id}), //refister() by passport mongoose plugin
+        req.body.password,(err, user) => {
+        if(err) {
           res.statusCode = 500;
           res.setHeader('Content-Type', 'application/json');
           res.json({err: err});
-          return;
         }
-        passport.authenticate('local')(req, res, () => {
-          res.statusCode = 200;
-          res.setHeader('Content-Type', 'application/json');
-          res.json({success: true, status: 'Registration Successful!'});
-        });
+        else {
+          if(req.body.admin)
+            user.admin = req.body.admin;
+          user.save((err,user)=>{
+            if(err){
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.json({err: err});
+              return;
+            }
+            passport.authenticate('local')(req, res, () => {
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.json({success: true, status: 'Registration Successful!'});
+            });
+            Cart.findByIdAndUpdate({ _id: cart._id }, { $set: {owner:user} },{new:true})
+              .then((resp)=>{
+                  res.statusCode=200;
+                  res.setHeader('Content-Type','application/json');
+                  //res.json(resp);
+                  console.log("updateddd")
+              },(err)=>next(err))
+              .catch((err)=>next(err));
+          });
+         
+          
+        }
       });
-      
-    }
-  });
+
+
+      //catch of cart
+    },(err)=>next(err))
+    .catch((err)=>next(err));
 });
 //use passpoert.authentificate as a middlware // only req and res
 router.post('/login',cors.corsWithOptions, passport.authenticate('local'), (req, res) => {
@@ -57,10 +82,10 @@ router.route('/getUserById/:userId')
 .options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
 .get(cors.cors,(req,res,next) => {
     User.findById(req.params.userId)
-    .then((dish) => {
+    .then((myuser) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json(dish);
+        res.json(myuser);
     }, (err) => next(err))
     .catch((err) => next(err));
 })

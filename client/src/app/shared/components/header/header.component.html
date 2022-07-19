@@ -15,8 +15,10 @@
         <button 
         *ngIf="isLoggedIn && isLessThenLargeDevice && !isTablet"
         mat-icon-button 
+        routerLink="/cart"
         class="_sidenav__toggler ml-auto md:ml-3 ms-sm-3 md:flex ml-auto shop">
          <mat-icon>shopping_cart</mat-icon>
+         ( {{cartItems}}  )
        </button>
       </div>
 
@@ -38,8 +40,10 @@
 
         <button *ngIf="isLoggedIn && isTablet"
              mat-icon-button 
+             routerLink="/cart"
              class="_sidenav__toggler ml-auto md:ml-3 ms-sm-3 md:flex ml-auto shop">
              <mat-icon>shopping_cart</mat-icon>
+             ({{cartItems}} )
        </button>
       
         <mat-menu #menu="matMenu">

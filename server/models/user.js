@@ -39,7 +39,11 @@ const UserSchema = new Schema({
     },
     zelle:{
         type:String,
-    }
+    },
+    cart: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Cart' 
+    },
 });
 UserSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User',UserSchema);
