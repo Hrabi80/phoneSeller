@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FacebookService, InitParams } from 'ngx-facebook';
 @Component({
   selector: 'll-home',
   templateUrl: './home.component.html',
@@ -25,10 +25,15 @@ export class HomeComponent implements OnInit {
     }
   };
   
-  constructor() {}
+  constructor(private facebookService: FacebookService) {}
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    this.initFacebookService();
+  }
+  private initFacebookService(): void {
+    const initParams: InitParams = { xfbml:true, version:'v3.2'};
+    this.facebookService.init(initParams);
+  }
   scroll(el: HTMLElement) {
     console.log("el",el)
     el.scrollIntoView({behavior: 'smooth'});

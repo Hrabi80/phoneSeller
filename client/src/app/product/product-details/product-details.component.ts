@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { CartService } from 'src/app/_services/cart.service';
 import { DeviceService } from 'src/app/_services/device.service';
 import { ProductService } from 'src/app/_services/product.service';
+import Swal from 'sweetalert2';
 declare var $:any;
 
 @Component({
@@ -50,19 +51,41 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
     this.subs.dispose();
   }
   selectOption(val) {
+    let myreturn;
     console.log("valueeee",val.value);
       this.opt=val.value;
-    console.log("heeeeere",this.conditions[this.opt].description)
+      myreturn = val.value;
+    console.log("heeeeere",this.conditions[this.opt].description);
+    return myreturn;
   }
 
-  addItemToCart(id:string,userId:string,qut=1){
-    let payload = {
-      productId: id,
-      userId:userId,
-      quantity :qut
+  addItemToCart(id:string){
+    let condition;
+    console.log("opt value ", this.opt);
+    switch(this.opt){
+      case 0 : condition='newcondition';
+      case 1 : condition='goodcondition';
+      case 2 : condition='poorcondition';
+      case 3 : condition='faultycondition';
     }
-    this.cartService.addToCart(payload).subscribe((res:any)=>{
-      console.log("product added !")
+    let cartId = localStorage.getItem("cart")
+    let payload = {
+      deviceId: id,
+      cartId:cartId,
+      condition :condition
+    }
+    
+    console.log("payload==>",payload);
+    this.cartService.addItemToCart(payload).subscribe((res:any)=>{
+      Swal.fire(
+        `Done`,
+        'The item is added to your cart !',
+        'success'
+      )
+      setTimeout(() => {
+        location.reload();
+      }, 500);
+      
     })
   }
 

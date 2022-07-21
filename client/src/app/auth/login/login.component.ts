@@ -45,6 +45,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('myuser_id', id); 
         this.service.getUserById(id).then((res:any)=>{
            this.isAdmin= res.data.admin;
+           localStorage.setItem('cart', res.data.cart);
+
           localStorage.setItem('isAdmin',JSON.stringify(this.isAdmin));       
           swal.fire(
             `welcome`,
@@ -52,9 +54,9 @@ export class LoginComponent implements OnInit {
             'success'
           )
         })
-        console.log('jwtData: ' + jwtData);
-        console.log('decodedJwtJsonData: ' + decodedJwtJsonData);
-        console.log('decodedJwtData: ' + decodedJwtData);
+        // console.log('jwtData: ' + jwtData);
+        // console.log('decodedJwtJsonData: ' + decodedJwtJsonData);
+        // console.log('decodedJwtData: ' + decodedJwtData);
         setTimeout(() => {
           if(this.isAdmin == true){
            this.router.navigate(['/dashboard-naim-adminvv1']);

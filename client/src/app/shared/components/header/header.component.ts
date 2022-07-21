@@ -35,7 +35,11 @@ export class HeaderComponent implements OnInit,OnDestroy {
   element = document.querySelector('.ll_header');
   //cart
   cartStatusSub$: Subscription;
+  cartId:string;
   cartItems: number;
+  //Admin
+  isAdmin = false;
+  
   constructor(
            private helper:HelperService,
            private router : Router,
@@ -52,9 +56,10 @@ export class HeaderComponent implements OnInit,OnDestroy {
            }
   ngOnInit(): void {
     this.isLoggedIn = this.authService.loggedIn();
+    this.isAdmin = this.authService.isAdmin();
     this.element = document.querySelector('.ll_header');
    // this.ishome = (this.currentURL == this.baseURL);
-   
+    
     this.menuList = staticMenuList;
     this.breakpointObserver.observe(['(max-width: 1199px)']).subscribe(({ matches }) => {
       this.isLessThenLargeDevice = matches;
@@ -62,30 +67,20 @@ export class HeaderComponent implements OnInit,OnDestroy {
     this.breakpointObserver.observe(['(min-width:1190px)']).subscribe(({ matches }) => {
       this.isTablet = matches;
     });
-
-    this.cartStatusSub$ = this.helper.cartStatus.subscribe((data) => {
-      console.log("data cart",data);
-        if (data === 'add') {
-          this.cartItems++;
-        } else if (data === 'remove') {
-          this.cartItems--;
-        } else if (data === 'updateStatus') {
-          this.getCartSize();
-        }
-      });
+    if(this.isLoggedIn){
+      let idCart = localStorage.getItem('cart');
+       this.cartService.getCartItems(idCart).subscribe((cartRes:any)=>{
+         this.cartItems= cartRes.data.items.length;
+       })
+    }
+   
+  
   }
   ngOnDestroy(): void {
     this.cartStatusSub$.unsubscribe();
   }
 
-  getCartSize(): void {
-    this.cartService
-      .getCartSize()
-      .subscribe((res:any) => {
-        this.cartItems = res.data;
-        console.log('cart',res);
-      });
-  }
+ 
 
 
   checkScroll() {

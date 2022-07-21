@@ -93,6 +93,9 @@ export class AuthService {
   logout() :void {    
     localStorage.setItem('isLoggedIn','false');    
     localStorage.removeItem('access_token');    
+    localStorage.removeItem('myuser_id');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('cart');
   }
 
   handleError(error: HttpErrorResponse) {

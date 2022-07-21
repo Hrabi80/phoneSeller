@@ -67,7 +67,11 @@ export class AddProductsComponent implements OnInit,OnDestroy {
              'new product is added to the database !',
              'success'
            );
-         }, 1500);
+           
+         }, 200);
+         setTimeout(() => {
+          location.reload();
+         }, 800);
       });
   }
   }

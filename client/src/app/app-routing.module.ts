@@ -3,10 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './shared/components/layouts/base-layout/base-layout.component';
 import { AuthGuard } from './_helper/auth.guard';
 import { AdminGuard } from './_helper/admin.guard';
+import { MessengerTestComponent } from './messenger-test/messenger-test.component';
 const baseLayoutRouting: Routes = [
   {
     path: 'products',
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+  },
+  {
+    path: 'tests',
+    component:MessengerTestComponent
   },
   {
     path: 'how-it-works',

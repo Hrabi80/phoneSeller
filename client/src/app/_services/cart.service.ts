@@ -17,29 +17,14 @@ export class CartService {
   
   constructor(private http: HttpClient) { }
   
-  getCartSize(): Observable<number> {
-    return this.http.get<number>(this.url + '/cart/size');
+  addItemToCart(data:any): Observable<any> {
+    return this.http.post<any>(this.url + '/cart', data);
   }
-
-  getCart(): Observable<Cart>{
-    return this.http.get<Cart>(this.url + '/cart')
-      .pipe(
-        map((res:any) => {
-          res.data.devices.map(b => b.qty = 1);
-          return res;
-        })
-      );
-  }
-
-  addToCart(data:any): Observable<Cart> {
-    return this.http.post<Cart>(this.url + '/cart/', data);
-  }
-
   removeFromCart(id: string): Observable<Cart> {
     return this.http.delete<Cart>(this.url + '/cart/' + id);
   }
-  getCartItems(idUser : string) {
-    return this.http.get(this.url+'/cart'+idUser);
+  getCartItems(idCart : string) {
+    return this.http.get(this.url+'/cart/'+idCart);
   }
   increaseQty(payload) {
     return this.http.post(this.url+'/Incresecart', payload);

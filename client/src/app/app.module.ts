@@ -17,6 +17,9 @@ import { environment } from 'src/environments/environment';
 import { AdminGuard } from './_helper/admin.guard';
 import { FilterPipe } from './filter.pipe';
 
+import { FacebookModule } from 'ngx-facebook';
+import { MessengerTestComponent } from './messenger-test/messenger-test.component';
+
 declare const FB:any;
 declare const window : any;
 export function appInitializer(accountService: FacebookService) {
@@ -46,12 +49,13 @@ export function appInitializer(accountService: FacebookService) {
 
 
 @NgModule({
-  declarations: [AppComponent, FilterPipe],
+  declarations: [AppComponent, FilterPipe, MessengerTestComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule,
     NgxSkeletonLoaderModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FacebookModule.forRoot()
  ],
   providers: [
     AuthGuard,

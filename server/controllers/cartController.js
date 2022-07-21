@@ -10,6 +10,8 @@ exports.addItemToCart = async (req, res) => {
         condition,
         cartId
     } = req.body;
+    console.log('carId from req ======>',cartId);
+    console.log('reeeqqq from req ======>',req.body);
     //const quantity = Number.parseInt(req.body.quantity);
     try {
         let cart = await cartRepository.cart(cartId);
@@ -17,13 +19,13 @@ exports.addItemToCart = async (req, res) => {
              if (!deviceDetails) {
             return res.status(500).json({
                 type: "Not Found",
-                msg: "Invalid request"
+                msg: "Device not found!"
             })
         }
         //--If Cart Exists ----
         if (cart) {
-            //---- Check if device exists in the cart ----
-            const indexFound = cart.items.findIndex(item => item.deviceId._id == deviceId);
+            //---- Check if device exists in the cart  item.deviceId._id == deviceId----
+            const indexFound = cart.items.findIndex(item => item.deviceId == deviceId);
             //------This removes an item from the the cart if the quantity is set to zero, We can use this method to remove an item from the list  -------
             // if (indexFound !== -1 && quantity <= 0) {
             //     cart.items.splice(indexFound, 1);
@@ -35,11 +37,12 @@ exports.addItemToCart = async (req, res) => {
             // }
             //----------Check if product exist, just add the previous quantity with the new quantity and update the total price-------
             if (indexFound !== -1) {
+                console.log('already exist error');
                 return res.status(400).json({
                     type: "Invalid",
                     msg: "Product already exist"
                 })
-               let price;
+               var price;
                switch(condition){
                    case 'newcondition' : price =  deviceDetails.newcondition;
                    case 'goodcondition' : price =  deviceDetails.goodcondition;
@@ -52,7 +55,8 @@ exports.addItemToCart = async (req, res) => {
             }
             //----Check if quantity is greater than 0 then add item to items array ----
             else if (indexFound == -1){
-                let price;
+                console.log('where the add item ');
+                var price;
                switch(condition){
                    case 'newcondition' : price =  deviceDetails.newcondition;
                    case 'goodcondition' : price =  deviceDetails.goodcondition;
@@ -69,6 +73,7 @@ exports.addItemToCart = async (req, res) => {
             }
             //----If quantity of price is 0 throw the error -------
             else {
+                console.log('0 impossible error');
                 return res.status(400).json({
                     type: "Invalid",
                     msg: "Invalid request"
@@ -83,6 +88,7 @@ exports.addItemToCart = async (req, res) => {
         }
         //------------ Cart not found ------------
         else {
+            console.log('cart not found  error');
             res.status(404).json({
                 type: "Invalid",
                 msg: "404 cart not found",
@@ -90,6 +96,7 @@ exports.addItemToCart = async (req, res) => {
             })
         }
     } catch (err) {
+        console.log('somth is wronfg    error');
         console.log(err)
         res.status(400).json({
             type: "Invalid",

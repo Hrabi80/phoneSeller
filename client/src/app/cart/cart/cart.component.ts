@@ -15,36 +15,29 @@ import { device } from 'src/app/models/device';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit,OnDestroy {
-  cart: Cart;
   cartForm: FormGroup;
-  carts;
+  cart;
   cartDetails;
   changesSub$: Subscription;
-  idUser;
+  idCart = localStorage.getItem('cart');
   lastCartState: string;
   lastDeleteId: string;
   situation:string;
+  items;
   constructor(private cartService : CartService,
               private router : Router,
               private helperService: HelperService) { }
 
   ngOnInit(): void {
-    this.cartService
-      .getCart()
-      .subscribe((res:any) => {
-        this.cart = res.data;
-        this.cartForm = this.toFormGroup(this.cart.devices);
-        this.onChanges();
-      });
-
-      this.getCart();
+    this.getCart();
   }
 
   getCart(): void {
-    this.cartService.getCartItems(this.idUser).subscribe((data: any) => {
-      this.carts = data.data;
+    this.cartService.getCartItems(this.idCart).subscribe((data: any) => {
+      this.cart = data.data;
       // this.cartDetails = data.data;
-      console.log("cart items==>",this.carts);
+      this.items= data.data.items;
+      console.log("cart items==>",this.cart);
     });
   }
   _increamentQTY(id, quantity): void {
@@ -92,47 +85,12 @@ export class CartComponent implements OnInit,OnDestroy {
       .subscribe(val => {
         if (this.lastCartState !== JSON.stringify(val)) {
           this.lastCartState = JSON.stringify(val);
-          this.reCalcSum(val,this.situation);
         }
       });
   }
 
-  reCalcSum(formValues: object,situation:string): void {
-    let price = 0;
-    if(situation == 'new'){
-      for (const b of this.cart.devices) {
-        price += b.newcondition * formValues[b._id];
-      }
-    }else if (situation == 'good'){
-      for (const b of this.cart.devices) {
-        price += b.goodcondition * formValues[b._id];
-      }
-    }
-    else if (situation == 'poor'){
-      for (const b of this.cart.devices) {
-        price += b.poorcondition * formValues[b._id];
-      }
-    }
-    else if (situation == 'faulty'){
-      for (const b of this.cart.devices) {
-        price += b.faultycondition * formValues[b._id];
-      }
-    }
-    
-    
+ 
 
-    this.cart.totalPrice = price;
-  }
-
-  onRemove(): void {
-    this.cartService
-      .removeFromCart(this.lastDeleteId)
-      .subscribe(() => {
-        this.helperService.cartStatus.next('remove');
-        this.cart.devices = this.cart.devices.filter(b => b._id !== this.lastDeleteId);
-        this.reCalcSum(this.cartForm.value,'poor');
-        //this.removeModalRef.hide();
-      });
-  }
+  
 
 }

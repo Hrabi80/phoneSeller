@@ -1,38 +1,80 @@
-<section>
-  <div class="spacer">
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col-lg-9">
-          <div class="row shop-listing">
-            <table class="table shop-table" *ngIf="carts">
-              <tr>
-                <th class="b-0">Name</th>
-                <th class="b-0">Price</th>
-                <th class="b-0">Quantity</th>
-                <th class="b-0 text-right">Total Price</th>
-              </tr>
-              <tr *ngFor="let item of carts.items">
-                <td>{{ item.productId.name }}</td>
-                <td>{{ item.productId.price }}</td>
-                <td>
-                  <button class="btn btn-primary btn-sm" (click)="increamentQTY(item.productId._id,1)">+</button>
-                  {{ item.quantity }}
-                  <button class="btn btn-primary btn-sm">-</button>
-                </td>
-                <td class="text-right">
-                  <h5 class="font-medium m-b-30">{{ item.total }}</h5>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="3" align="right">Subtotal :{{ carts.subTotal }}</td>
-                <td colspan="4" align="right">
-                  <button class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
-                </td>
-              </tr>
-            </table>
+<div class="cartContainer">
+  <div class="title-container">
+    <h1 style="font-size: xx-large;"> 
+      Order details:
+    </h1>
+  </div>
+  </div>
+  <main>
+    <div class="basket">
+      <div class="basket-module">
+        <label for="promo-code">Enter a promotional code</label>
+        <input id="promo-code" type="text"
+         placeholder="Coupon 10$"
+         name="promo-code" maxlength="5" 
+         class="promo-code-field">
+        <button 
+        class="promo-code-cta"
+        mat-flat-button class="py-3 px-20 font-bold" 
+              style="background-color: var(--purple); color:white"
+        >Apply</button>
+      </div>
+      <div class="basket-labels">
+        <ul>
+          <li class="item item-heading">Item</li>
+          <li class="price">Price</li>
+          <li class="subtotal">Subtotal</li>
+        </ul>
+      </div>
+      <div class="basket-product" *ngFor="let item of items">
+        dddd
+        <div class="item">
+          <div class="product-image">
+            <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
+          </div>
+          <div class="product-details">
+            <h1><strong>{{item.deviceId.characteristics}}</strong></h1>
+            <p><strong>Navy, Size 18</strong></p>
+            <p>Product Code - 232321939</p>
           </div>
         </div>
+        <div class="price">{{item.price}}</div>
+        <div class="subtotal"></div>
+        <div class="remove">
+          <button style="color:rgb(189, 104, 104)">Remove</button>
+        </div>
       </div>
+     
     </div>
-  </div>
-</section>
+    <aside>
+      <div class="summary">
+        <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+        <div class="summary-subtotal">
+          <div class="subtotal-title">Subtotal</div>
+          <div class="subtotal-value final-value" id="basket-subtotal">{{cart.subTotal}}</div>
+          <div class="summary-promo hide">
+            <div class="promo-title">Promotion</div>
+            <div class="promo-value final-value" id="basket-promo"></div>
+          </div>
+        </div>
+        <div class="summary-delivery">
+          <select name="delivery-collection" class="summary-delivery-selection">
+              <option value="0" selected="selected">Select Collection or Delivery</option>
+             <option value="collection">Collection</option>
+             <option value="first-class">Royal Mail 1st Class</option>
+             <option value="second-class">Royal Mail 2nd Class</option>
+             <option value="signed-for">Royal Mail Special Delivery</option>
+          </select>
+        </div>
+        <div class="summary-total">
+          <div class="total-title">Total</div>
+          <div class="total-value final-value" id="basket-total">{{cart.subTotal}}</div>
+        </div>
+        <div class="summary-checkout">
+          <button class="checkout-cta">Go to Secure Checkout</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+
