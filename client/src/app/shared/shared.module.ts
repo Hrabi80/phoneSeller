@@ -23,7 +23,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FilterPipe } from './filter.pipe';
 
 
-
 const commonModules = [
   HttpClientModule,
   MatToolbarModule,

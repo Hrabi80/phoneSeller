@@ -60,7 +60,7 @@ export class ListProductsComponent implements OnInit,OnDestroy {
             console.log(data);
             Swal.fire(
               'Deleted!',
-              'Ce service est supprimé.',
+              'The product is deleted !',
               'success'
             );
             const index = this.products.findIndex(x => x._id === id);

@@ -10,21 +10,20 @@ exports.addItemToCart = async (req, res) => {
         condition,
         cartId
     } = req.body;
-    console.log('carId from req ======>',cartId);
-    console.log('reeeqqq from req ======>',req.body);
     //const quantity = Number.parseInt(req.body.quantity);
     try {
         let cart = await cartRepository.cart(cartId);
         let deviceDetails = await deviceRepository.deviceById(deviceId);
-             if (!deviceDetails) {
-            return res.status(500).json({
-                type: "Not Found",
-                msg: "Device not found!"
-            })
-        }
+            if (!deviceDetails) {
+                return res.status(500).json({
+                    type: "Not Found",
+                    msg: "Device not found!"
+                })
+            }
+        
         //--If Cart Exists ----
         if (cart) {
-            //---- Check if device exists in the cart  item.deviceId._id == deviceId----
+            //---- Check if device exists in the cart ----
             const indexFound = cart.items.findIndex(item => item.deviceId == deviceId);
             //------This removes an item from the the cart if the quantity is set to zero, We can use this method to remove an item from the list  -------
             // if (indexFound !== -1 && quantity <= 0) {
@@ -35,40 +34,38 @@ exports.addItemToCart = async (req, res) => {
             //         cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
             //     }
             // }
-            //----------Check if product exist, just add the previous quantity with the new quantity and update the total price-------
+            //----------Check if product already exist-------
             if (indexFound !== -1) {
                 console.log('already exist error');
                 return res.status(400).json({
                     type: "Invalid",
                     msg: "Product already exist"
                 })
-               var price;
-               switch(condition){
-                   case 'newcondition' : price =  deviceDetails.newcondition;
-                   case 'goodcondition' : price =  deviceDetails.goodcondition;
-                   case 'poorcondition' : price =  deviceDetails.poorcondition;
-                   case 'faultycondition' : price =  deviceDetails.faultycondition;
-               }
-               console.log("price==>",price);
-                cart.items[indexFound].price = price
-                cart.subTotal = cart.items.map(item => item.price).reduce((acc, next) => acc + next);
+                
             }
             //----Check if quantity is greater than 0 then add item to items array ----
             else if (indexFound == -1){
-                console.log('where the add item ');
+                console.log('-----------where the add item ---------------');
+               
+                var productName = deviceDetails.productId.name;
+                var productPhoto = deviceDetails.productId.photo; 
                 var price;
+                var productCondition;
                switch(condition){
-                   case 'newcondition' : price =  deviceDetails.newcondition;
-                   case 'goodcondition' : price =  deviceDetails.goodcondition;
-                   case 'poorcondition' : price =  deviceDetails.poorcondition;
-                   case 'faultycondition' : price =  deviceDetails.faultycondition;
+                   case 'newcondition' : {price =  deviceDetails.newcondition ; productCondition = "New Condition";}
+                   case 'goodcondition' : {price =  deviceDetails.goodcondition ; productCondition= "Good Condition";}
+                   case 'poorcondition' : {price =  deviceDetails.poorcondition ; productCondition= "Poor Condition";}
+                   case 'faultycondition' :{price =  deviceDetails.faultycondition ; productCondition= "Faulty Condition";}
                }
-               console.log("price==>",price);
-                cart.items.push({
-                    deviceId: deviceId,
-                    quantity: 1,
-                    price: price,
-                })
+               const payload = {
+                deviceId: deviceId,
+                quantity: 1,
+                price: price,
+                name : productName,
+                photo : productPhoto,
+                condition: productCondition
+               }
+                cart.items.push(payload)
                 cart.subTotal = cart.items.map(item => item.price).reduce((acc, next) => acc + next);
             }
             //----If quantity of price is 0 throw the error -------
@@ -158,21 +155,24 @@ exports.emptyCart = async (req, res) => {
 
 exports.removeItem = async (req, res) => {
 
-
     try {
+        
         let cart = await cartRepository.cart(req.params.cart_id);
+        console.log("------------------First test------------");
         if(cart){
+           // console.log("cart items ===>",cart.items);
             const indexOfItem = cart.items.findIndex(item => item.deviceId._id == req.params.device_id);
+            console.log("------------------comming to here -*--------",indexOfItem)
             cart.items.splice(indexOfItem, 1);
-            console.log("after sclice",cart)
+            
             if (cart.items.length == 0) {
                 cart.subTotal = 0;
              } else {
                cart.subTotal =  cart.items.map(item => item.price).reduce((acc, next) => acc + next);
              }
-             
-             let data = await cart.save();
-    
+            
+             let data =  cart.save();
+         //    console.log("after let data await save ",data);
             res.status(200).json({
                 type: "success",
                 mgs: "Process successful",

@@ -6,6 +6,17 @@ let ItemSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Device",
     },
+    name:{
+        type:String,
+        required : true
+    },
+    photo :{
+        type:String,
+    },
+    condition:{
+        type:String,
+        //required : true
+    },
     quantity: {
         type: Number,
         default: 1
@@ -14,6 +25,7 @@ let ItemSchema = new Schema({
         type: Number,
         required: true
     },
+  
 
 }, {
     timestamps: true

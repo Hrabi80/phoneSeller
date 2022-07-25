@@ -20,8 +20,9 @@ export class CartService {
   addItemToCart(data:any): Observable<any> {
     return this.http.post<any>(this.url + '/cart', data);
   }
-  removeFromCart(id: string): Observable<Cart> {
-    return this.http.delete<Cart>(this.url + '/cart/' + id);
+  removeItemFromCart(cartId: string,itemId:string): Observable<any> {
+    console.log("car id and item ", cartId, itemId);
+    return this.http.delete<any>(this.url + '/cart/' + cartId+ '/'+ itemId);
   }
   getCartItems(idCart : string) {
     return this.http.get(this.url+'/cart/'+idCart);

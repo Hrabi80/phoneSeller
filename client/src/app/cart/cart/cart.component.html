@@ -23,28 +23,35 @@
         <ul>
           <li class="item item-heading">Item</li>
           <li class="price">Price</li>
-          <li class="subtotal">Subtotal</li>
         </ul>
       </div>
-      <div class="basket-product" *ngFor="let item of items">
-        dddd
+      <div class="basket-product" *ngFor="let item of cartItems ; let i = index">
         <div class="item">
           <div class="product-image">
-            <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
+            <img src="/assets/images/login-bg.jpg" 
+            *ngIf="!item?.photo"
+            alt="Placholder Image 2" class="product-frame">
+          </div>
+          <div class="product-image">
+          <img src="{{item.photo}}" 
+            *ngIf="item?.photo"
+            alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
-            <h1><strong>{{item.deviceId.characteristics}}</strong></h1>
-            <p><strong>Navy, Size 18</strong></p>
-            <p>Product Code - 232321939</p>
+            <h1><strong></strong></h1>
+            <p><strong>{{item?.name}}</strong></p>
+            <p>{{item?.deviceId?.characteristics}} <br>
+              condition :{{item?.deviceId?.condition}}</p>
           </div>
         </div>
-        <div class="price">{{item.price}}</div>
-        <div class="subtotal"></div>
+        <div class="price">{{item?.price}}</div>
         <div class="remove">
-          <button style="color:rgb(189, 104, 104)">Remove</button>
+          <button style="color:rgb(189, 104, 104)" (click)="remove(item._id)"
+          >Remove from cart
+          </button>
         </div>
       </div>
-     
+
     </div>
     <aside>
       <div class="summary">
