@@ -64,7 +64,7 @@
           </button>
 
 
-          <button mat-menu-item routerLink="/profile"  *ngIf='isLoggedIn'>
+          <button mat-menu-item routerLink="/profile"  *ngIf='isLoggedIn && !isAdmin'>
             <mat-icon>home</mat-icon>
             <span>Profile</span>
           </button>

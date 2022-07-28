@@ -2,17 +2,15 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { menuList as staticMenuList } from '../../data/menus';
 import { MatDialog } from '@angular/material/dialog';
-import { from } from 'rxjs';
 
 import { SignupComponent } from 'src/app/auth/signup/signup.component';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
-import { Subscription } from 'rxjs';
 import { HelperService } from 'src/app/_helper/helper.service';
 import { CartService } from 'src/app/_services/cart.service';
-import { Cart } from 'src/app/models/cart';
+
 @Component({
   selector: 'll-header',
   templateUrl: './header.component.html',
@@ -34,7 +32,6 @@ export class HeaderComponent implements OnInit,OnDestroy {
   isLoggedIn : boolean = false;
   element = document.querySelector('.ll_header');
   //cart
-  cartStatusSub$: Subscription;
   cartId:string;
   cartItems: number;
   //Admin
@@ -77,7 +74,7 @@ export class HeaderComponent implements OnInit,OnDestroy {
   
   }
   ngOnDestroy(): void {
-    this.cartStatusSub$.unsubscribe();
+
   }
 
  

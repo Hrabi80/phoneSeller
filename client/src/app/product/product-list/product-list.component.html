@@ -64,10 +64,9 @@
         </div>
      
     </div>
-  <div class="old-container">
-   
-    <div class="flex items-center flex-wrap -mx-4 card-container">
-      </div>
+
+    <!-- <div class="flex items-center flex-wrap -mx-4 card-container">
+      </div> -->
 
       <!-- <div 
         *ngFor="let prod of products" 
@@ -82,8 +81,8 @@
           </div>
         </div>
       </div>  -->
-      <div class="prodcuts-container">
-      <div class="product-card" *ngFor="let prod of products  | filter: filterBy:'name' "  [attr.data-index]="i">
+      <div class="products-container">
+      <div class="productt-card" *ngFor="let prod of products  | filter: filterBy:'name' "  [attr.data-index]="i">
         <div class="badge">Up to ${{prod.upPrice}}</div>
         <div class="product-tumb">
           <img src="{{prod.photo}}" alt="" (click)="openPopup(prod._id)">
@@ -94,16 +93,10 @@
             <button class="sell-btn" mat-flat-button (click)="openPopup(prod._id)">
               Sell now
             </button>
-          <!-- <div class="product-bottom-details">
-            <div class="product-price">Up to ${{prod.upPrice}}</div>
-            <div class="product-links">
-              <button>sell now</button>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
-  </div>
+  
    </div> 
 
 <!-- <div class="ll-find-more mt-10 mb-36">
