@@ -10,6 +10,7 @@ module.exports = {
   Devices: require("./models/device"),
   Products: require("./models/product"),
   Users: require("./models/user"),
+  Orders : require("./models/order")
 };
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,6 +18,7 @@ var productsRouter = require('./routes/products');
 var deviceRouter = require('./routes/devices');
 var contactRouter = require('./routes/contacts');
 var cartRouter = require('./routes/cartRouter');
+var orderRouter = require('./routes/orderRouter');
 
 
 const mongoose = require('mongoose');
@@ -57,6 +59,7 @@ app.use('',productsRouter);
 app.use('',deviceRouter);
 app.use('',contactRouter);
 app.use('/cart',cartRouter);
+app.use('/order/',orderRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*

@@ -1,0 +1,111 @@
+<div class="container">
+  <section class="title-section">
+    <h3>Payment method</h3>
+  </section>
+
+  <section class="method-section"> 
+    <div class="card" (click)="selectOption('paypal')">
+      <img src="assets/images/payment/paypal.png" alt="paypal-logo">
+    </div>
+    <div class="card" (click)="selectOption('cash')">
+      <img src="assets/images/payment/cash.png" alt="cash-image" >
+    </div>
+    <div class="card" (click)="selectOption('zelle')">
+      <img src="assets/images/payment/zelle.png" alt="zelle-logo">
+    </div>
+  </section>
+
+  <section class="adress-section">
+    <div class="paypal" *ngIf="paymentOption == 'paypal'">
+      <form [formGroup]="paypalForm">
+      <input 
+      type="text" 
+      placeholder="Your Paypal adress"
+      class="border border-gray-500 p-15 px-11 w-full rounded-sm mt-8" 
+      [(ngModel)]="userPaypal"
+      formControlName="paypal" />
+      <input 
+        type="email" 
+        placeholder="Verify Your Paypal adress"
+        class="border border-gray-500 p-15 px-11 w-full rounded-sm mt-5" 
+        formControlName="verify"/>
+        <button 
+          class="px-8 py-4 text-white mt-8 rounded font-large"
+          style="background-color: rgb(170, 35, 35); width: 30%; margin-right: 6px;"
+          (click)="cancelOperation()"
+        >
+           Cancel
+        </button>
+        <button 
+          class="px-8 py-4 text-white mt-8 rounded font-large"
+          style="background-color: var(--purple);"
+          (click)="addPaypal()"
+        >
+           Continue
+        </button>
+
+      </form>
+    </div>
+
+    <div class="cash" *ngIf="paymentOption == 'cash'">
+      <p>
+        Cash payment only available In Store, by Appointment
+      </p>
+      <button 
+          class="px-8 py-4 text-white mt-8 rounded font-large"
+          style="background-color: rgb(170, 35, 35); width: 30%; margin-right: 6px;"
+          (click)="cancelOperation()"
+        >
+           Cancel
+        </button>
+      <button 
+          class="px-8 py-4 text-white mt-8 rounded font-large"
+          style="background-color: var(--purple);"
+          (click)="addCash()"
+        >
+             Continue
+        </button>
+    </div>
+    <div class="zelle" *ngIf="paymentOption == 'zelle'">
+      <form [formGroup]="zelleForm">
+        <input 
+        type="text" 
+        placeholder="Your Zelle adress"
+        class="border border-gray-500 p-15 px-11 w-full rounded-sm mt-8" 
+        [(ngModel)]="userZelle"
+        formControlName="zelle" />
+        <input 
+          type="email" 
+          placeholder="Verify Your Zelle adress"
+          class="border border-gray-500 p-15 px-11 w-full rounded-sm mt-5" 
+          
+          formControlName="verify"/>
+          <button 
+          class="px-8 py-4 text-white mt-8 rounded font-large"
+          style="background-color: rgb(170, 35, 35); width: 30%; margin-right: 6px;"
+          (click)="cancelOperation()"
+        >
+           Cancel
+        </button>
+        <button 
+          class="px-8 py-4 text-white mt-8 rounded font-large"
+          style="background-color: var(--purple);"
+          (click)="addZelle()"
+        >
+             Continue
+        </button>
+        </form>
+    </div>
+    <button  *ngIf="!paymentOption"
+          class="px-8 py-4 text-white mt-8 rounded font-large"
+          style="background-color: rgb(170, 35, 35); width: 30%; margin-right: 6px;"
+          (click)="cancelOperation()"
+        >
+           Cancel
+        </button>
+    <!-- [disabled]="contactForm.pristine || contactForm.invalid" -->
+  </section>
+
+</div>
+
+

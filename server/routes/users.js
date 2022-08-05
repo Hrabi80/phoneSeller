@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 var cors = require('./cors');
 var User = require('../models/user');
 var Cart = require('../models/cart');
-
+const userController = require("../controllers/userController");
 router.use(bodyParser.json());
 router.post('/signup',cors.corsWithOptions, (req, res, next) => {
   var cart = new Cart({
@@ -54,8 +54,6 @@ router.post('/signup',cors.corsWithOptions, (req, res, next) => {
           
         }
       });
-
-
       //catch of cart
     },(err)=>next(err))
     .catch((err)=>next(err));
@@ -68,16 +66,7 @@ router.post('/login',cors.corsWithOptions, passport.authenticate('local'), (req,
   res.setHeader('Content-Type', 'application/json');
   res.json({success: true,token: token,status: 'You are successfully logged in!'});
 });
-
-router.get('/facebook/token', passport.authenticate('facebook-token'), (req, res) => {
-  if (req.user) {
-    var token = authenticate.getToken({_id: req.user._id});
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json({success: true, token: token, status: 'You are successfully logged in!'});
-  }
-});
-
+router.post('/facebook/token', passport.authenticate('facebook-token'),userController.facebookLogin);
 router.route('/getUserById/:userId')
 .options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
 .get(cors.cors,(req,res,next) => {
@@ -89,7 +78,7 @@ router.route('/getUserById/:userId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-
+router.get("/", userController.getUsers);
 router.route('/api/updateUser/:userId')
 .options(cors.corsWithOptions, (req,res)=>{ res.sendStatus(200); })
 .post(cors.corsWithOptions,(req,res,next)=>{
@@ -97,8 +86,10 @@ router.route('/api/updateUser/:userId')
     res.end('POST operation not supported on /api/category/id');
 })
 .put(cors.corsWithOptions,authenticate.verifyUser,(req,res,next)=>{
+  console.log("rreq body ==>",req.body);
     User.findByIdAndUpdate(req.params.userId,{$set: req.body},{new:true})
     .then((updatedUser)=>{
+      
         res.status.code=200;
         res.setHeader('Content-Type','application/json');
         res.json(updatedUser);

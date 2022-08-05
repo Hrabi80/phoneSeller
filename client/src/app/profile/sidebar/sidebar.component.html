@@ -17,14 +17,14 @@
           >
           <a
             mat-list-item
-            routerLink="/dashboard-naim-adminvv1/saved-items"
+            routerLink="/cart"
             routerLinkActive="bg-gray-200"
             class="font-semibold text-gray-500 hover:text-primary"
-            ><mat-icon class="mr-2">list</mat-icon> Saved Items</a
+            ><mat-icon class="mr-2">list</mat-icon>My Shop Cart</a
           >
           <a
             mat-list-item
-            routerLink="/dashboard-naim-adminvv1/orders"
+            routerLink="/profile/orders"
             routerLinkActive="bg-gray-200"
             class="font-semibold text-gray-500 hover:text-primary"
             ><mat-icon class="mr-2">article</mat-icon> Orders</a
@@ -49,7 +49,9 @@
         <div class="container">
           <div class="flex items-center">
             <div class="flex items-center">
-              <a class="logo" ><img src="assets/images/logov1.jpg" alt="Logo" class="logo-img"/></a>
+              <a class="logo" routerLink="/">
+                <img src="assets/images/logov1.jpg" alt="Logo" class="logo-img"/>
+              </a>
             </div>
             <button
               *ngIf="isLessThenLargeDevice"
@@ -85,14 +87,14 @@
                     >
                     <a
                       mat-list-item
-                      routerLink="/dashboard-naim-adminvv1/saved-items"
+                      routerLink="/cart"
                       routerLinkActive="bg-gray-200"
                       class="font-semibold text-gray-500 hover:text-primary"
-                      ><mat-icon class="mr-2">list</mat-icon>shop cart</a
+                      ><mat-icon class="mr-2">list</mat-icon>My Shop Cart</a
                     >
                     <a
                       mat-list-item
-                      routerLink="/dashboard-naim-adminvv1/orders"
+                      routerLink="/profile/orders"
                       routerLinkActive="bg-gray-200"
                       class="font-semibold text-gray-500 hover:text-primary"
                       ><mat-icon class="mr-2">article</mat-icon> my Orders</a

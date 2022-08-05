@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="sector">
+    <div class="title">
+      <h5>
+        ID
+      </h5>
+    </div>
+    <div class="value">
+      {{order?._id}}
+    </div>
+  </div>
+  <div class="sector">
+    <div class="title">
+      <h5>
+        paymentMethod
+      </h5>
+    </div>
+    <div class="value">
+      {{order?.paymentMethod}}
+    </div>
+  </div>
+  <div class="sector">
+    <div class="title">
+      <h5>
+        paymentAdress
+      </h5>
+    </div>
+    <div class="value">
+      {{order?.paymentAdress}}
+    </div>
+  </div>
+  <div class="sector">
+    <div class="title">
+      <h5>
+        Shippment method
+      </h5>
+    </div>
+    <div class="value">
+      {{order?.meeting}}
+    </div>
+  </div>
+  <div class="sector" *ngFor="item of order?.items">
+    <div class="title">
+      <h5>
+        price
+      </h5>
+    </div>
+    <div class="value">
+      {{item?.price}}
+    </div>
+
+
+
+    <div class="title">
+      <h5>
+        condition
+      </h5>
+    </div>
+    <div class="value">
+      {{item?.condition}}
+    </div>
+
+  </div>
+
+
+
+ 
+  <!-- items!:[{
+    price :number;
+    condition:string;
+    name:string;
+    photo:string;
+    characteristics:string;
+    deviceId:string
+  }] -->
+</div>

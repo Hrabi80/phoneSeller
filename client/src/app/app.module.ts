@@ -19,6 +19,11 @@ import { FilterPipe } from './filter.pipe';
 
 import { FacebookModule } from 'ngx-facebook';
 import { MessengerTestComponent } from './messenger-test/messenger-test.component';
+import {
+  FacebookLoginProvider,
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
 
 declare const FB:any;
 declare const window : any;
@@ -55,6 +60,7 @@ export function appInitializer(accountService: FacebookService) {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    SocialLoginModule,
     FacebookModule.forRoot()
  ],
   providers: [

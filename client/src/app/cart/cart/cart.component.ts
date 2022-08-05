@@ -36,7 +36,7 @@ export class CartComponent implements OnInit,OnDestroy {
   getCart(): void {
     this.cartService.getCartItems(this.idCart).subscribe((data: any) => {
       this.cart = data.data;
-      // this.cartDetails = data.data;
+      console.log('cart',this.cart);
       this.cartItems= data.data.items;
     });
   }

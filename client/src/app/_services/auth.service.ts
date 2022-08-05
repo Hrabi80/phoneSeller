@@ -54,7 +54,9 @@ export class AuthService {
         })
       );
   }
-
+  getUsers(){
+    return this._http.get<[user]>(this._url + '/users/');
+  }
   getUserById(id:any){
     return new Promise(resolve => {
       this._http.get(this._url + '/users/getUserById/'+id).subscribe((res: any) => {
@@ -66,6 +68,7 @@ export class AuthService {
   }
 
   updateUser(id:any,data:user){
+    console.log("daataa to update ", data);
     return this._http.put(this._url + '/users/api/updateUser/'+id,data);
   }
     

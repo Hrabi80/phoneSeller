@@ -10,7 +10,6 @@ exports.addItemToCart = async (req, res) => {
         condition,
         cartId
     } = req.body;
-    //const quantity = Number.parseInt(req.body.quantity);
     try {
         let cart = await cartRepository.cart(cartId);
         let deviceDetails = await deviceRepository.deviceById(deviceId);
@@ -25,15 +24,6 @@ exports.addItemToCart = async (req, res) => {
         if (cart) {
             //---- Check if device exists in the cart ----
             const indexFound = cart.items.findIndex(item => item.deviceId == deviceId);
-            //------This removes an item from the the cart if the quantity is set to zero, We can use this method to remove an item from the list  -------
-            // if (indexFound !== -1 && quantity <= 0) {
-            //     cart.items.splice(indexFound, 1);
-            //     if (cart.items.length == 0) {
-            //         cart.subTotal = 0;
-            //     } else {
-            //         cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
-            //     }
-            // }
             //----------Check if product already exist-------
             if (indexFound !== -1) {
                 console.log('already exist error');
@@ -41,12 +31,10 @@ exports.addItemToCart = async (req, res) => {
                     type: "Invalid",
                     msg: "Product already exist"
                 })
-                
             }
-            //----Check if quantity is greater than 0 then add item to items array ----
+            //----Add Item ----
             else if (indexFound == -1){
                 console.log('-----------where the add item ---------------');
-               
                 var productName = deviceDetails.productId.name;
                 var productPhoto = deviceDetails.productId.photo; 
                 var price;
@@ -63,7 +51,8 @@ exports.addItemToCart = async (req, res) => {
                 price: price,
                 name : productName,
                 photo : productPhoto,
-                condition: productCondition
+                condition: productCondition,
+                characteristics  : deviceDetails.characteristics
                }
                 cart.items.push(payload)
                 cart.subTotal = cart.items.map(item => item.price).reduce((acc, next) => acc + next);
@@ -158,11 +147,9 @@ exports.removeItem = async (req, res) => {
     try {
         
         let cart = await cartRepository.cart(req.params.cart_id);
-        console.log("------------------First test------------");
         if(cart){
            // console.log("cart items ===>",cart.items);
             const indexOfItem = cart.items.findIndex(item => item.deviceId._id == req.params.device_id);
-            console.log("------------------comming to here -*--------",indexOfItem)
             cart.items.splice(indexOfItem, 1);
             
             if (cart.items.length == 0) {

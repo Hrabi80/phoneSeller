@@ -22,6 +22,7 @@ export class UserInfoComponent implements OnInit {
 @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
+    console.log("user info ===>",this.data.user);
     this.userform = this.fb.group({
       username:  ['', [Validators.required, Validators.email]],
       firstname:  [''],
@@ -37,7 +38,6 @@ export class UserInfoComponent implements OnInit {
    updateUser(){ 
     this.subs.dispose();
     this.subs.add =this.service.updateUser(this.data.user._id ,this.userform.value).subscribe((res:any) => {
-      console.log("result update ", res);
         setTimeout(() => {
          Swal.fire(
            'Updated !',

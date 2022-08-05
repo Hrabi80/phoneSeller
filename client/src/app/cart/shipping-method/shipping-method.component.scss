@@ -1,0 +1,75 @@
+.container{
+  margin-top: 18vh;
+  .title-section{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    h3{
+      color: var(--purple);
+    }
+  }
+  .meet-section{
+    .meet-title{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h5{
+        color :#3a4d5c;
+        font-weight: 300 !important;
+      }
+    }
+    .options-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      mat-radio-button{
+        margin: 20px;
+        border: 1px black;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        padding: 12px;
+      }
+    }
+    .message-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p{
+        font-size: large;
+        padding: 5px;
+        margin-bottom: 4px;
+      }
+    }
+    
+  }
+  .account-section{
+    padding: 10px;
+    .account-title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h5{
+          color :#3a4d5c;
+          font-weight: 300 !important;
+        }
+     }
+     .account-form{
+      input{
+        height: 8vh;
+      }
+     }
+  }
+  .button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    button{
+      width: 40%;
+      
+    }
+  }
+  
+}      

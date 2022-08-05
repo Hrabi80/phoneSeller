@@ -1,0 +1,46 @@
+
+
+<div class="flex-container">
+  <div class="left"><h5 class="mb-3 font-medium">List of users </h5></div>
+
+</div>
+	
+  
+<div class="table-inside">
+	<table class="order-table table-auto ltMd:responsive">
+		<thead>
+			<tr class="border text-left">
+				<th>
+					<span class="text-gray-800">email</span>
+				</th>
+				<th>
+					<span class="text-gray-800">fullname</span>
+				</th>
+        <th>
+					<span class="text-gray-800">phone</span>
+				</th>
+				<th>
+					<span class="text-gray-800">Created</span>
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of users" class="border">
+					<td>
+						{{user?.username | titlecase }}
+					</td>
+					<td>
+						<span>{{user?.firstname}} {{user?.lastname}} </span>
+					</td>
+          <td>
+						<span>{{user?.phone}}</span>
+					</td>
+					<td>
+						<span>{{prod?.createdAt  | date}}</span>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+

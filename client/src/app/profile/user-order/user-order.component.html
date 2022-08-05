@@ -1,0 +1,59 @@
+
+<div class="order-container" *ngFor="let order of orders">
+
+
+<div class="border bg-white mt-8 rounded-md">
+  <div class="flex p-4 bg-gray-200">
+    <h6 class="text-normal">order Information</h6>
+
+  </div>
+  <div class="flex flex-wrap p-4">
+    <div class="w-full sm:w-1/2">
+      <div class="ll-dataset">
+        <div class="ll-dataset__label">
+          Email:
+        </div>
+        <div class="ll-dataset__value">
+          {{order?.username}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          paymentMethod:
+        </div>
+        <div class="ll-dataset__value">
+          {{order?.paymentMethod}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          shipping method:
+        </div>
+        <div class="ll-dataset__value" >
+          {{order?.meeting}}
+        </div>
+      </div>
+    </div>
+    <div class="w-full sm:w-1/2 mt-4 sm:mt-0">
+      <div class="ll-dataset">
+        <div class="ll-dataset__label">
+          total price:
+        </div>
+        <div class="ll-dataset__value" >
+          {{order?.subTotal}}
+        </div>
+      </div>
+      <div class="ll-dataset mt-4">
+        <div class="ll-dataset__label">
+          Status:
+        </div>
+        <div class="ll-dataset__value" >
+          {{order?.status}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>

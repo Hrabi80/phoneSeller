@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexProfileComponent } from './index-profile/index-profile.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { UserOrderComponent } from './user-order/user-order.component';
 
 const DashboardChildrenRoute: Routes = [
   {
@@ -9,6 +10,10 @@ const DashboardChildrenRoute: Routes = [
     pathMatch: 'full',
     component: IndexProfileComponent
   },
+  {
+    path:'orders',
+    component: UserOrderComponent
+  }
 
 ];
 

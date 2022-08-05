@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let ItemSchema = new Schema({
     deviceId: {
-        type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
         ref: "Device",
     },
     name:{
@@ -20,6 +20,10 @@ let ItemSchema = new Schema({
     quantity: {
         type: Number,
         default: 1
+    },
+    characteristics : {
+        type: String,
+        required: true
     },
     price: {
         type: Number,

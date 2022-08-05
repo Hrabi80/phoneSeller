@@ -70,11 +70,27 @@ export class LoginComponent implements OnInit {
     }
 
     fbLogin() {
-      this.fbservice.fbLogin().then(() => {
-        console.log('User has been logged in');
+      this.fbservice.fbLoginOld().then((res:any) => {
+        console.log('User has been logged in', res);
+        let mm=localStorage.getItem('access_token');
+        let jwtData = mm!.split('.')[1];
+        let decodedJwtJsonData = window.atob(jwtData);
+        let decodedJwtData = JSON.parse(decodedJwtJsonData);
+        let id = decodedJwtData._id;
+        localStorage.setItem('myuser_id', id); 
+        this.service.getUserById(id).then((res:any)=>{
+           this.isAdmin= res.data.admin;
+           localStorage.setItem('cart', res.data.cart);
+           localStorage.setItem('isAdmin',JSON.stringify(this.isAdmin));       
+          swal.fire(
+            `welcome`,
+            'You logged in successfully !',
+            'success'
+          )
+        })
         setTimeout(() => {
-         this.router.navigate(['/dashboard']);
-        }, 5000);
+            location.reload();
+        }, 2500);
       });  
     }
 

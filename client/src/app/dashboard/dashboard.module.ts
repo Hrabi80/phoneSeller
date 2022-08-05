@@ -8,30 +8,32 @@ import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.co
 import { DashboardIndexComponent } from './dashboard-index/dashboard-index.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardSavedItemComponent } from './dashboard-saved-item/dashboard-saved-item.component';
-import { DashboardProfileComponent } from './dashboard-profile/dashboard-profile.component';
-import { DashboardOrderComponent } from './dashboard-order/dashboard-order.component';
+import { DashboardOrderComponent } from './order/order-list/dashboard-order.component';
 import { ListProductsComponent } from './products/list-products/list-products.component';
 import { AddProductsComponent } from './products/add-products/add-products.component';
 import { UpdateProductsComponent } from './products/update-products/update-products.component';
 import { ListDevicesComponent } from './devices/list-devices/list-devices.component';
 import { AddDevicesComponent } from './devices/add-devices/add-devices.component';
 import { UpdateDevicesComponent } from './devices/update-devices/update-devices.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { OrderDetailComponent } from './order/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
     DashboardLayoutComponent,
     DashboardIndexComponent,
     DashboardSavedItemComponent,
-    DashboardProfileComponent,
     DashboardOrderComponent,
     ListProductsComponent,
     AddProductsComponent,
     UpdateProductsComponent,
     ListDevicesComponent,
     AddDevicesComponent,
-    UpdateDevicesComponent
+    UpdateDevicesComponent,
+    UsersListComponent,
+    OrderDetailComponent
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule, MatMenuModule],
-  providers : [AddProductsComponent,UpdateProductsComponent]
+  providers : [AddProductsComponent,UpdateProductsComponent,OrderDetailComponent]
 })
 export class DashboardModule {}

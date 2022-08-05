@@ -3,7 +3,7 @@ import { device } from './device';
 
 export class Cart {
   constructor(
-    public user: user,
+    public owner: user,
     public items: device[],
     public totalPrice: number,
     public subTotal: number

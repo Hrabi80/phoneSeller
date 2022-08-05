@@ -3,6 +3,8 @@ import { HttpClient , HttpHeaders,HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+
 declare const FB:any;
 @Injectable({
   providedIn: 'root'
@@ -13,25 +15,74 @@ export class FacebookService {
     
   }
   fbLogin() {
+    return FB.login((result:any) => {
+      console.log("result ==>",result);
+      if (result.authResponse) {
+        return this.http.post(`http://localhost:3000/users/facebook/token`, {access_token: result.authResponse.accessToken})
+        .pipe(
+          map((res:any) => {
+            localStorage.setItem('access_token', res.token);
+            localStorage.setItem('isLoggedIn','true'); 
+            return true;
+          }));
+      }
+    })
+  }
+    // return new Promise((resolve, reject) => {
+    //   FB.login((result:any) => {
+    //     console.log('dddddd', result);
+    //     if (result.authResponse) {
+    //       return this.http.post(`http://localhost:3000/users/facebook/token`, {access_token: result.authResponse.accessToken})
+      //  }
+        //       .toPromise()
+        //       .then((response:any )=> {
+        //         var token = response.headers.get('x-auth-token');
+        //         if (token) {
+        //           localStorage.setItem('id_token', token);
+        //         }
+        //         resolve(response.json());
+        //       })
+        //       .catch(() => reject());
+        // } else {
+        //   reject();
+        // }
+      // }, {scope: 'public_profile,email'})
+   // });
+  
+//  })}
+
+  fbLoginOld() {
     return new Promise((resolve, reject) => {
-      FB.login(result => {
+      FB.login((result:any) => {
+        console.log('dddddd', result);
         if (result.authResponse) {
           return this.http.post(`http://localhost:3000/users/facebook/token`, {access_token: result.authResponse.accessToken})
-              .toPromise()
-              .then((response:any )=> {
-                var token = response.headers.get('x-auth-token');
-                if (token) {
-                  localStorage.setItem('id_token', token);
-                }
-                resolve(response.json());
-              })
-              .catch(() => reject());
-        } else {
-          reject();
-        }
-      }, {scope: 'public_profile,email'})
+          .toPromise().then((response:any )=> {
+            console.log("result in promise facebook service",response);
+          //  var token = response.headers.get('x-auth-token');
+             localStorage.setItem('access_token', response.token);
+             localStorage.setItem('isLoggedIn','true'); 
+             return response;
+           //  resolve(response.json());
+          }
+          ).catch(() => reject());}
+      })
+        //       .toPromise()
+        //       .then((response:any )=> {
+        //         var token = response.headers.get('x-auth-token');
+        //         if (token) {
+        //           localStorage.setItem('id_token', token);
+        //         }
+        //         resolve(response.json());
+        //       })
+        //       .catch(() => reject());
+        // } else {
+        //   reject();
+        // }
+      // }, {scope: 'public_profile,email'})
     });
   }
+ // })}
 
   logout() {
     localStorage.removeItem('id_token');

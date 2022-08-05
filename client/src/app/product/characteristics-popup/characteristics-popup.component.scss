@@ -33,3 +33,18 @@
     }
   }
 }
+@media (max-width :815px){
+  .popup{
+    padding: 8px;
+    width: 80vw;
+  }
+}
+@media(max-width : 600px){
+  .popup{
+    padding: 8px;
+    width: 80vw;
+  }
+  .flex-container{
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,104 @@
+<div class="container">
+  <section class="title-section">
+    <h3>Shipping Method</h3>
+  </section>
+  <section class="meet-section">
+    <div class="meet-title">
+      <h5>How Should We Meet?</h5>
+    </div>
+    <div class="options-container">
+      <mat-radio-group aria-label="Select an option" [(ngModel)]="meetSelection">
+        <mat-radio-button value="1">I will ship and send you tracking</mat-radio-button>
+        <mat-radio-button value="2">Meet @ Phone Store</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="message-container">
+      <div *ngIf="meetSelection == 1">
+        <p> Meet me at app store. adress : 444 S. Cedros Solana Beach, California.</p> 
+      </div>
+      <div *ngIf="meetSelection == 2">
+        <p>
+        Send me your device(s) by fedex and send me traking.
+      </p>
+      </div>
+    </div>
+    
+  </section>
+  <section class="account-section">
+    <div class="account-title">
+      <h5>Account information</h5>
+    </div>
+    <div class="account-form">
+      <form [formGroup]="orderForm">
+        <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+          <input type="text" 
+         [(ngModel)]="user.firstname"
+          placeholder="Your First Name" 
+          class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm"
+          formControlName="firstname" />
+          <input
+            type="text"
+            [(ngModel)]="user.lastname"
+            placeholder="Your Last Name"
+            class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm mt-3 sm:mt-0"
+            formControlName="lastname"
+          />
+        </div>
+        <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+          <input type="number" 
+            [(ngModel)]="user.phone"
+            placeholder="Your phone number" 
+            class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm"
+            formControlName="phone" />
+          <input
+            type="text"
+            [(ngModel)]="user.street"
+            placeholder="Your Street adress"
+            class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm mt-3 sm:mt-0"
+            formControlName="street"
+          />
+        </div>
+        <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+          <input type="text" 
+          [(ngModel)]="user.state"
+          placeholder="Your State" 
+          class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm"
+          formControlName="state" />
+          <input
+          [(ngModel)]="user.city"
+            type="text"
+            placeholder="Your City"
+            class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm mt-3 sm:mt-0"
+            formControlName="city"
+          />
+        </div>
+        <div class="flex flex-wrap sm:flex-nowrap sm:space-x-5 mt-3">
+          <input type="text"
+          [(ngModel)]="user.username" 
+            placeholder="Your email" 
+            class="border border-gray-200 p-2 px-4 w-full sm:w-1/2 rounded-sm"
+            formControlName="username" />
+        </div>
+      </form>
+    </div>
+    
+      
+  </section>
+
+  <div class="button-container">
+    <button 
+    class="px-8 py-4 text-white mt-8 rounded font-large"
+    style="background-color: rgb(170, 35, 35); width: 30%; margin-right: 6px;"
+    (click)="cancelOperation()"
+  >
+    Cancel
+  </button>
+    <button 
+      class="px-8 py-4 text-white mt-8 rounded font-large"
+      style="background-color: var(--purple);"
+      (click)="createOrder()"
+    >
+    Validate order
+     </button>
+  </div>
+</div>
