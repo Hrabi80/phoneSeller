@@ -62,20 +62,18 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
   addItemToCart(id:string){
     let condition;
     console.log("opt value ", this.opt);
-    switch(this.opt){
-      case 0 : condition='newcondition';
-      case 1 : condition='goodcondition';
-      case 2 : condition='poorcondition';
-      case 3 : condition='faultycondition';
-    }
+    if(this.opt == 0)condition='newcondition';
+    if(this.opt == 1)condition='goodcondition';
+    if(this.opt == 2)condition='poorcondition';
+    if(this.opt == 3)condition='faultycondition';
+ 
     let cartId = localStorage.getItem("cart")
     let payload = {
       deviceId: id,
       cartId:cartId,
       condition :condition
     }
-    
-    console.log("payload==>",payload);
+ 
     this.cartService.addItemToCart(payload).subscribe((res:any)=>{
       Swal.fire(
         `Done`,
@@ -85,7 +83,6 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
       setTimeout(() => {
         location.reload();
       }, 500);
-      
     })
   }
 

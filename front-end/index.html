@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/src/assets/font-awesome/css/font-awesome.min.css">
     <script type="”text/javascript”" src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
-  <style>@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;html{-moz-tab-size:4;tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%;}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5;}body{font-family:inherit;line-height:inherit;}*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb;}*{--tw-shadow:0 0 #0000;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#3b82f680;--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;}:root{--primary:#58b57d;--accent:#ff5722;--warn:#fbc02d;}*{margin:0;padding:0;outline:0;}html{font-size:14px;}body,html{height:100%;}body{margin:0;font-family:Righteous,cursive;}.bg-light{background-color:#fbfbfb;}:root{--darker-blue:#19243b;--dark-blue:#21395f;--blue:#205adf;--blue2:#7d9ecc;--blue3:#3c6173;--light-blue:#95d4e1;--old-blue:#5179af;--dark-purple:#411b32;--purple:#6343cd;--pinky:#fb88ff;--old-purple:#b092da;--grey:#dcdcdc;}</style><link rel="stylesheet" href="styles.8fc82b29c3b4604b353c.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.8fc82b29c3b4604b353c.css"></noscript></head>
+  <style>@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;html{-moz-tab-size:4;tab-size:4;line-height:1.15;-webkit-text-size-adjust:100%;}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5;}body{font-family:inherit;line-height:inherit;}*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb;}*{--tw-shadow:0 0 #0000;--tw-ring-inset:var(--tw-empty, );--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#3b82f680;--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;}:root{--primary:#58b57d;--accent:#ff5722;--warn:#fbc02d;}*{margin:0;padding:0;outline:0;}html{font-size:14px;}body,html{height:100%;}body{margin:0;font-family:Righteous,cursive;}.bg-light{background-color:#fbfbfb;}:root{--darker-blue:#19243b;--dark-blue:#21395f;--blue:#205adf;--blue2:#7d9ecc;--blue3:#3c6173;--light-blue:#95d4e1;--old-blue:#5179af;--dark-purple:#411b32;--purple:#6343cd;--pinky:#fb88ff;--old-purple:#b092da;--grey:#dcdcdc;}</style><link rel="stylesheet" href="styles.d88bdef2a74ac8af034b.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.d88bdef2a74ac8af034b.css"></noscript></head>
   <body class="bg-light">
     <ll-root></ll-root>
 
@@ -36,6 +36,54 @@
        }(document, 'script', 'facebook-jssdk'));   
   
     </script>
-  <script src="runtime.9d33068ed0111744029e.js" defer></script><script src="polyfills.3516d8889b7a6e0112fe.js" defer></script><script src="main.af38fa4f5d9b22fd0800.js" defer></script>
+
+
+<!-- Messenger Chat Plugin Code -->
+<div id="fb-root" style="z-index: 7777777;"></div>
+
+<!-- Your Chat Plugin code -->
+<div id="fb-customer-chat" class="fb-customerchat" style="z-index: 7777777;">
+</div>
+
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "102160995767186");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<!-- Messenger Chat Plugin Code -->
+<div id="fb-root"></div>
+
+<!-- Your Chat Plugin code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "102160995767186");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v14.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+        <script type="”text/javascript”" src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
+
+  <script src="runtime.d5c49cef2090724c4052.js" defer></script><script src="polyfills.3516d8889b7a6e0112fe.js" defer></script><script src="main.e8dc062e2abb4757c1a6.js" defer></script>
 
 </body></html>

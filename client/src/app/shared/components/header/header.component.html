@@ -11,6 +11,9 @@
           <li *ngFor="let menu of menuList">
             <a mat-button [routerLink]="[menu.path]"  class="text-lg font-bold py-2 px-5">{{ menu.name }}</a>
           </li>
+          <li>
+            <a mat-button (click)="openTrackOrder()"  class="text-lg font-bold py-2 px-5">Track Order</a>
+          </li>
         </ul>
         <button 
         *ngIf="isLoggedIn && isLessThenLargeDevice && !isTablet"

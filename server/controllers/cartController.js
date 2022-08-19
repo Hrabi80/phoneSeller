@@ -40,10 +40,10 @@ exports.addItemToCart = async (req, res) => {
                 var price;
                 var productCondition;
                switch(condition){
-                   case 'newcondition' : {price =  deviceDetails.newcondition ; productCondition = "New Condition";}
-                   case 'goodcondition' : {price =  deviceDetails.goodcondition ; productCondition= "Good Condition";}
-                   case 'poorcondition' : {price =  deviceDetails.poorcondition ; productCondition= "Poor Condition";}
-                   case 'faultycondition' :{price =  deviceDetails.faultycondition ; productCondition= "Faulty Condition";}
+                   case 'newcondition' : {price =  deviceDetails.newcondition ; productCondition = "New Condition";break;}
+                   case 'goodcondition' : {price =  deviceDetails.goodcondition ; productCondition= "Good Condition";break;}
+                   case 'poorcondition' : {price =  deviceDetails.poorcondition ; productCondition= "Poor Condition";break;}
+                   case 'faultycondition' :{price =  deviceDetails.faultycondition ; productCondition= "Faulty Condition";break;}
                }
                const payload = {
                 deviceId: deviceId,

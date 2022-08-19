@@ -37,9 +37,11 @@ exports.buildPDF = async (input) => {
 	let doc = new PDFDocument({ margin: 50 });
 
     generateHeader(doc);
-// 	doc.fontSize(27)
-//    .font('fonts/Chalkboard.ttc', 'Chalkboard-Bold')
-//    .text('Order Confirmation', 100, 100);
+	// doc.fontSize(10)
+		// .text("--", 150, 60)
+		// .text("----", 280, 80, { width: 90, align: 'right' })
+		// // .text("namer", 300, 190, { width: 190, align: 'right' })
+		// .text("c5", 0, 280, { align: 'right' });
 	generateCustomerInformation(doc, invoice);
 	generateInvoiceTable(doc, invoice);
 	generateFooter(doc);
@@ -69,6 +71,8 @@ function generateHeader(doc) {
 		.text('123 Main Street', 200, 65, { align: 'right' })
 		.text('New York, NY, 10025', 200, 80, { align: 'right' })
 		.moveDown();
+		doc.fontSize(10)
+		.text("___________________________________________________________________________________________", 50, 100)
 }
 
 function generateFooter(doc) {
@@ -77,23 +81,26 @@ function generateFooter(doc) {
 	).text(
 		'Payment is due within 15 days. Thank you for your business.',
 		50,
-		780,
+		720,
 		{ align: 'center', width: 500 },
 	);
 }
 function generateCustomerInformation(doc, invoice) {
 	const shipping = invoice.shipping;
+	doc.fontSize(16).text("Hello "+invoice.firstname+" "+invoice.lastname,230,160)
+    .fontSize(12).text("Your sale order number is: c8099xf",200,180)
+	doc.fontSize(10)
+		.text("___________________________________________________________________________________________", 50, 220)
+	doc.fontSize(10).text(`Invoice Number: '+(55) 27 797 784'`, 50, 280)
+		.text(`Invoice Date: ${new Date()}`, 50, 300)
+		.text(`Total price : ${invoice.subtotal} $`, 50, 400)
+		.text("Shipping adress :", 400, 260)
 
-	doc.text(`Invoice Number: '---'`, 50, 200)
-		.text(`Invoice Date: ${new Date()}`, 50, 215)
-		.text(`Balance Due: ${invoice.subtotal}`, 50, 130)
-
-		.text(invoice.firstname + ' '+ invoice.lastname, 300, 200)
-		.text(shipping.address, 300, 215)
+		.text(shipping.address, 400, 280)
 		.text(
-			`${shipping.city}, ${shipping.state}, ${shipping.country}`,
-			300,
-			130,
+			`City :${shipping.city}, State :${shipping.state}, Country ${shipping.country}`,
+			50,
+			320,
 		)
 		.moveDown();
 }
@@ -107,8 +114,14 @@ function generateTableRow(doc, y, c1, c2, c3, c4, c5) {
 }
 
 function generateInvoiceTable(doc, invoice) {
+	doc.fontSize(13)
+		.text("product(s)", 50, 335)
+		doc.fontSize(13)
+		.text("price", 150, 335)
+	doc.fontSize(10)
+		.text("____________________________", 50, 345)
 	let i,
-		invoiceTableTop = 330;
+		invoiceTableTop = 335;
 
 	for (i = 0; i < invoice.items.length; i++) {
 		const item = invoice.items[i];
@@ -117,7 +130,7 @@ function generateInvoiceTable(doc, invoice) {
 			doc,
 			position,
 			item.name,
-			item.price,
+			item.price+ "$",
 			// item.amount / item.quantity,
 			// item.quantity,
 			// item.amount,
@@ -139,9 +152,9 @@ const result = await transporter.sendMail({
 	from: 'hrabi.ahmed88@gmail.com',
 	to: 'quokkaway22@gmail.com',
 	to: input.reciver,
-	subject: 'Hello World',
-	text: 'Hello World',
-	html: '<b>Hey there! </b><br> This is a test message sent with Nodemailer<br/>',
+	subject: 'Nationwideventures order',
+	text: 'Hello Client ',
+	html: '<b>thanks for your business! </b><br> This is a test message sent with Nodemailer with pdf creation<br/>',
 			attachments: [
 				{
 					filename: input.filename,

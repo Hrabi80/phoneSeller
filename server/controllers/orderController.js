@@ -24,11 +24,12 @@ exports.createOrder = async (req, res) => {
             cart.items = [];
             cart.subTotal = 0
             let data = await cart.save();
-            res.status(200).json({
-                type: "success",
-                mgs: "Cart has been emptied",
-                data: data
-            })
+            console.log("cart is emtiyed");
+            // res.status(200).json({
+            //     type: "success",
+            //     mgs: "Cart has been emptied",
+            //     data: data
+            // })
             }catch (err) {
                 console.log(err)
                 res.status(400).json({
@@ -67,7 +68,7 @@ exports.getOrders = async (req, res) => {
     },(err)=>next(err))
     .catch((err)=>next(err));
 }
-exports.getOrderById = async (req, res) => {
+exports.getOrderById = async (req, res,next) => {
     ORDER.findById(req.params.order_id)
     .then((orders)=>{
         res.status.code=200;

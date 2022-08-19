@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule ,FormsModule,Validators} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { FilterPipe } from './filter.pipe';
+import {MatInputModule} from '@angular/material/input';
 
 
 const commonModules = [
@@ -34,7 +35,9 @@ const commonModules = [
   MatListModule,
   MatDialogModule,
   MatMenuModule,
-  MatRadioModule
+  MatRadioModule,
+  MatInputModule
+  
 ];
 
 @NgModule({
@@ -43,7 +46,7 @@ const commonModules = [
            ReactiveFormsModule],
   exports: [HeaderComponent, FooterComponent, BaseLayoutComponent, FeatureComponent, LoaderComponent, SidenavComponent,FancyCardsComponent, ...commonModules,
     FormsModule,
-  ReactiveFormsModule,
+  ReactiveFormsModule,MatInputModule
   
   ],
   

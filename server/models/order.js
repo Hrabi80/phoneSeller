@@ -40,7 +40,7 @@ const orderSchema = new Schema({
         required: true,
         default : 'awaiting',
         enum: {
-            values: ['awaiting', 'canceled', 'shipping','received','rejected','accepting'],
+            values: ['awaiting', 'rejected','received','checked','paid'],
             message: '{VALUE} is not supported'
           }
     },

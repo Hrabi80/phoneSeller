@@ -24,6 +24,7 @@ import {
   SocialLoginModule,
   SocialAuthServiceConfig,
 } from 'angularx-social-login';
+import { TrackOrderComponent } from './track-order/track-order.component';
 
 declare const FB:any;
 declare const window : any;
@@ -37,9 +38,8 @@ export function appInitializer(accountService: FacebookService) {
           xfbml      : true,
           version    : 'v14.0'
         });
-          console.log("dddd fb ");
+          console.log("... Test  fb for LOGIN perpose ... ");
         FB.AppEvents.logPageView();   
-          
       };
     
       (function(d, s, id){
@@ -54,18 +54,20 @@ export function appInitializer(accountService: FacebookService) {
 
 
 @NgModule({
-  declarations: [AppComponent, FilterPipe, MessengerTestComponent],
+  declarations: [AppComponent, FilterPipe, MessengerTestComponent, TrackOrderComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule,
     NgxSkeletonLoaderModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     SocialLoginModule,
     FacebookModule.forRoot()
  ],
   providers: [
     AuthGuard,
     AdminGuard,
+    TrackOrderComponent,
     JwtInterceptor,
     {
       provide: HTTP_INTERCEPTORS,

@@ -15,11 +15,7 @@ export const menuList: Menu[] = [
   {
     path: '/contact',
     name: 'Contact Us'
-  },
-  {
-    path: '/',
-    name: 'Track Order'
-  },
+  }
   /*
   {
     path: '/dashboard',

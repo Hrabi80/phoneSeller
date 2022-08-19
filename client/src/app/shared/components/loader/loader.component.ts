@@ -14,6 +14,6 @@ export class LoaderComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.show = false;
-    }, 2500);
+    }, 300);
   }
 }

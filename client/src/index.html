@@ -10,50 +10,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/src/assets/font-awesome/css/font-awesome.min.css">
-    <script type=”text/javascript” src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
   </head>
   <body class="bg-light">
+
     <ll-root></ll-root>
-
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-    <script>
-       window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '430977672213037',
-          cookie     : true,
-          xfbml      : true,
-          version    : 'v14.0'
-        });
-          
-        FB.AppEvents.logPageView();   
-          
-      };
-    
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));   
-  
-    </script>
-
-
-<!-- Messenger Chat Plugin Code -->
-<div id="fb-root" style="z-index: 7777777;"></div>
-
-<!-- Your Chat Plugin code -->
-<div id="fb-customer-chat" class="fb-customerchat" style="z-index: 7777777;">
-</div>
-
-<script>
-  var chatbox = document.getElementById('fb-customer-chat');
-  chatbox.setAttribute("page_id", "102160995767186");
-  chatbox.setAttribute("attribution", "biz_inbox");
-</script>
-
-<!-- Your SDK code -->
 <!-- Messenger Chat Plugin Code -->
 <div id="fb-root"></div>
 
@@ -84,7 +44,7 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>
-        <script type=”text/javascript” src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
+<script type=”text/javascript” src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
 
   </body>
 </html>

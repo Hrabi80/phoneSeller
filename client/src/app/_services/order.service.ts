@@ -24,7 +24,7 @@ export class OrderService {
     return this.http.get(this.url+'/order/user/'+idUser);
   }
   getOrderById(idOrder : string):Observable<order> {
-    return this.http.get<order>(this.url+'/order/'+idOrder);
+    return this.http.get<order>(this.url+'/order/one/'+idOrder);
   }
   getAllOrders():Observable<Array<order>>{
     return this.http.get<Array<order>>(this.url+'/order/');

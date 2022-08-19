@@ -25,6 +25,7 @@ export class CartComponent implements OnInit,OnDestroy {
   lastDeleteId: string;
   situation:string;
   cartItems = [];
+  isempty = true;
   constructor(private cartService : CartService,
               private router : Router,
               private helperService: HelperService) { }
@@ -38,6 +39,8 @@ export class CartComponent implements OnInit,OnDestroy {
       this.cart = data.data;
       console.log('cart',this.cart);
       this.cartItems= data.data.items;
+      console.log("cart itemms ===>",this.cartItems)
+      if(this.cartItems.length != 0) this.isempty = false;
     });
   }
 
@@ -58,11 +61,15 @@ export class CartComponent implements OnInit,OnDestroy {
              console.log(data);
              Swal.fire(
                'Removed !',
-               'Ce service est supprimé.',
+               'the item is deleted.',
                'success'
              );
              const index = this.cartItems.findIndex(x => x._id === id);
                this.cartItems.splice(index, 1);
+               setTimeout(() => {
+                location.reload();
+              }, 500);
+               if(this.cartItems.length == 0) this.isempty = true;
            });
        }else{
          Swal.fire(

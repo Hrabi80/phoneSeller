@@ -19,7 +19,7 @@ exports.facebookLogin = async(req,res,next)=>{
     .where('facebookId').equals(req.user.facebookId)
     .then((fbuser)=>{
         if(fbuser){
-            console.log("user Exists !!!!!!",fbuser);
+            //check if user has a card
             var token = authenticate.getToken({_id: req.user._id});
             console.log("token",token);
             res.statusCode = 200;

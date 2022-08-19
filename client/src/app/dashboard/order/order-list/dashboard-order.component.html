@@ -65,11 +65,11 @@
 			
 					<td>
 						<div [ngClass]="{
-							'bg-blue-500 text-blue-500': order?.status === 'complated',
+							'bg-blue-500 text-blue-500': order?.status === 'paid',
 							'bg-red-500 text-red-500': order?.status === 'rejected',
 							'bg-yellow-500 text-yellow-900': order?.status === 'awaiting',
 							'bg-primary text-primary': order?.status === 'initialized',
-							'bg-primary text-primary': order?.status === 'accepting'
+							'bg-primary text-primary': order?.status === 'checked'
 							}" 
 							class="text-[12px] bg-opacity-20 rounded-full px-3 inline-block font-bold py-[3px]"
 						>
@@ -85,14 +85,18 @@
 								<mat-icon>dialpad</mat-icon>
 								<span>Details</span>
 							</button>
-							<button mat-menu-item (click)="updateStatus(order?._id, 'accepting')">
-								<span>Accept offer</span>
+							<button mat-menu-item (click)="updateStatus(order?._id,'received')">
+								<span>received</span>
+							</button>
+							<button mat-menu-item (click)="updateStatus(order?._id, 'checked')">
+								<span>checked device</span>
 							</button>
 							<button mat-menu-item (click)="updateStatus(order?._id,'rejected')">
 								<span>Reject Offer</span>
 							</button>
-							<button mat-menu-item (click)="updateStatus(order?._id,'received')">
-								<span>received</span>
+							
+							<button mat-menu-item (click)="updateStatus(order?._id,'paid')">
+								<span>Order paid</span>
 							</button>
 							
 						</mat-menu>

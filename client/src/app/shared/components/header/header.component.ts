@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
 import { HelperService } from 'src/app/_helper/helper.service';
 import { CartService } from 'src/app/_services/cart.service';
+import { TrackOrderComponent } from 'src/app/track-order/track-order.component';
 
 @Component({
   selector: 'll-header',
@@ -107,7 +108,12 @@ export class HeaderComponent implements OnInit,OnDestroy {
   }
   openLogin(){
     const dialogRef = this.dialog.open(LoginComponent);
-
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openTrackOrder(){
+    const dialogRef = this.dialog.open(TrackOrderComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
