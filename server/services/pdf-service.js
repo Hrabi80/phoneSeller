@@ -88,7 +88,7 @@ function generateFooter(doc) {
 function generateCustomerInformation(doc, invoice) {
 	const shipping = invoice.shipping;
 	doc.fontSize(16).text("Hello "+invoice.firstname+" "+invoice.lastname,230,160)
-    .fontSize(12).text("Your sale order number is: c8099xf",200,180)
+    .fontSize(12).text("Your sale order number is:"+invoice._id,200,180)
 	doc.fontSize(10)
 		.text("___________________________________________________________________________________________", 50, 220)
 	doc.fontSize(10).text(`Invoice Number: '+(55) 27 797 784'`, 50, 280)

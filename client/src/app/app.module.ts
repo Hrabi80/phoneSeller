@@ -25,6 +25,7 @@ import {
   SocialAuthServiceConfig,
 } from 'angularx-social-login';
 import { TrackOrderComponent } from './track-order/track-order.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 declare const FB:any;
 declare const window : any;
@@ -62,13 +63,14 @@ export function appInitializer(accountService: FacebookService) {
     ReactiveFormsModule,
     SharedModule,
     SocialLoginModule,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
  ],
   providers: [
     AuthGuard,
     AdminGuard,
     TrackOrderComponent,
     JwtInterceptor,
+    {provide:LocationStrategy,useClass:HashLocationStrategy},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
@@ -79,7 +81,8 @@ export function appInitializer(accountService: FacebookService) {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorIntercept,
       multi: true,
-    }
+    },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
     //APP_INITIALIZER
     //useFactory: () => appInitializer,  
   ],
