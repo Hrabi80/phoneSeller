@@ -2,7 +2,6 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { menuList as staticMenuList } from '../../data/menus';
 import { MatDialog } from '@angular/material/dialog';
-
 import { SignupComponent } from 'src/app/auth/signup/signup.component';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { Router } from '@angular/router';

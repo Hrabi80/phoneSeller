@@ -18,7 +18,7 @@ export class FacebookService {
     return FB.login((result:any) => {
       console.log("result ==>",result);
       if (result.authResponse) {
-        return this.http.post(`http://localhost:3000/users/facebook/token`, {access_token: result.authResponse.accessToken})
+        return this.http.post(`http://localhost:3001/users/facebook/token`, {access_token: result.authResponse.accessToken})
         .pipe(
           map((res:any) => {
             localStorage.setItem('access_token', res.token);
@@ -28,35 +28,13 @@ export class FacebookService {
       }
     })
   }
-    // return new Promise((resolve, reject) => {
-    //   FB.login((result:any) => {
-    //     console.log('dddddd', result);
-    //     if (result.authResponse) {
-    //       return this.http.post(`http://localhost:3000/users/facebook/token`, {access_token: result.authResponse.accessToken})
-      //  }
-        //       .toPromise()
-        //       .then((response:any )=> {
-        //         var token = response.headers.get('x-auth-token');
-        //         if (token) {
-        //           localStorage.setItem('id_token', token);
-        //         }
-        //         resolve(response.json());
-        //       })
-        //       .catch(() => reject());
-        // } else {
-        //   reject();
-        // }
-      // }, {scope: 'public_profile,email'})
-   // });
   
-//  })}
-
   fbLoginOld() {
     return new Promise((resolve, reject) => {
       FB.login((result:any) => {
         console.log('dddddd', result);
         if (result.authResponse) {
-          return this.http.post(`http://localhost:3000/users/facebook/token`, {access_token: result.authResponse.accessToken})
+          return this.http.post(`http://localhost:3001/users/facebook/token`, {access_token: result.authResponse.accessToken})
           .toPromise().then((response:any )=> {
             console.log("result in promise facebook service",response);
           //  var token = response.headers.get('x-auth-token');
@@ -67,7 +45,7 @@ export class FacebookService {
           }
           ).catch(() => reject());}
       })
-        //       .toPromise()
+        // //       .toPromise()
         //       .then((response:any )=> {
         //         var token = response.headers.get('x-auth-token');
         //         if (token) {

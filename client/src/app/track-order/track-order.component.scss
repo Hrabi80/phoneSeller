@@ -9,9 +9,36 @@
   .example-full-width {
     width: 100%;
   }
-
+  .mobile-tracker-container{
+    display: none;
+  }
   img{
     max-width: 40px;
     max-height: 40px;
   }
+}
+
+@media(max-width : 820px){
+  .trackOrderContainer{
+    
+    padding: 5px;
+    .tracker-container{
+      display: none;
+    }
+    .mobile-tracker-container{
+      display: block;
+      overflow: auto;
+      height: 80vh;
+      .flex{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .info-card{
+          width: 65vw;
+        }
+      }
+    }
+  }
+  
 }

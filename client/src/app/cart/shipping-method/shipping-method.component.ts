@@ -39,10 +39,10 @@ export class ShippingMethodComponent implements OnInit,OnDestroy{
       firstname : [''],
       lastname : [''],
       phone : ['',[Validators.required]],
-      street : ['',[]],
-      state : ['',[]],
-      zip : ['',[]],
-      city : ['',[]],
+      street : ['',[Validators.required]],
+      state : ['',[Validators.required]],
+      zip : ['',[Validators.required]],
+      city : ['',[Validators.required]],
     });
     
 
@@ -72,7 +72,7 @@ export class ShippingMethodComponent implements OnInit,OnDestroy{
     else if(this.orderForm.invalid){
       Swal.fire(
         'incomplete information!',
-        'Please verify your e-mail and phone number !',
+        'Please verify your input !',
         'error'
       );
   }
@@ -103,6 +103,10 @@ export class ShippingMethodComponent implements OnInit,OnDestroy{
         //this.router.navigate(['/']);
      //   location.reload();
       }, 100);
+      setTimeout(() => {
+        this.router.navigate(['/']);
+        location.reload();
+      }, 200);
     })
   }
 }

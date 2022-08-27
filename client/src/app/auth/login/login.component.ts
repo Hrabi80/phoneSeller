@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
   get f() { return this.signinForm.controls; }
 
   login(){
-    this.service.login(this.f.username.value, this.f.password.value)
+    var username = this.f.username.value.toLowerCase() 
+    this.service.login(username, this.f.password.value)
     .pipe(first())
     .subscribe(
       (result) =>{
@@ -70,7 +71,7 @@ export class LoginComponent implements OnInit {
     }
 
     fbLogin() {
-      this.fbservice.fbLoginOld().then((res:any) => {
+      this.fbservice.fbLogin().then((res:any) => {
         console.log('User has been logged in', res);
         let mm=localStorage.getItem('access_token');
         let jwtData = mm!.split('.')[1];

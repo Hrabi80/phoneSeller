@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';  
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
+import { FacebookService } from 'src/app/_services/facebook.service';
 import swal from 'sweetalert2'; 
 @Component({
   selector: 'll-signup',
@@ -13,8 +14,10 @@ export class SignupComponent implements OnInit {
   message: string;  
   returnUrl: string;
   public error: string;
+  isAdmin:boolean;
   
   constructor(private service : AuthService,
+              private fbservice : FacebookService,
               private fb : FormBuilder,  
               private router : Router) { }
 
@@ -23,7 +26,7 @@ export class SignupComponent implements OnInit {
      // username: ['', Validators.required],  
       password: ['', Validators.required],
       username :['', [Validators.required,
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+        Validators.pattern("^[A-z0-9._%+-]+@[A-z0-9.-]+\\.[A-z]{2,4}$")
       ]]
    });  
     this.returnUrl = '/dashboard';  
@@ -42,7 +45,6 @@ export class SignupComponent implements OnInit {
     else {  
       this.service.signup(this.signupForm.value).then(
         (res) => {
-          console.log("add user res==>",res);
           setTimeout(() => {
            swal.fire(
              'Thank you !',
@@ -59,6 +61,32 @@ export class SignupComponent implements OnInit {
         )}
        );
       }  
-    }  
+    }
+    
+    
+    fbLogin() {
+      this.fbservice.fbLogin().then((res:any) => {
+        console.log('User has been logged in', res);
+        let mm=localStorage.getItem('access_token');
+        let jwtData = mm!.split('.')[1];
+        let decodedJwtJsonData = window.atob(jwtData);
+        let decodedJwtData = JSON.parse(decodedJwtJsonData);
+        let id = decodedJwtData._id;
+        localStorage.setItem('myuser_id', id); 
+        this.service.getUserById(id).then((res:any)=>{
+           this.isAdmin= res.data.admin;
+           localStorage.setItem('cart', res.data.cart);
+           localStorage.setItem('isAdmin',JSON.stringify(this.isAdmin));       
+          swal.fire(
+            `welcome`,
+            'You logged in successfully !',
+            'success'
+          )
+        })
+        setTimeout(() => {
+            location.reload();
+        }, 2500);
+      });  
+    }
 
 }

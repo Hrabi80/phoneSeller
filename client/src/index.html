@@ -23,7 +23,7 @@
 
 <script>
   var chatbox = document.getElementById('fb-customer-chat');
-  chatbox.setAttribute("page_id", "102160995767186");
+  chatbox.setAttribute("page_id", "108352275330989");
   chatbox.setAttribute("attribution", "biz_inbox");
 </script>
 
@@ -31,9 +31,11 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({
+      appId      : '430977672213037',
       xfbml            : true,
       version          : 'v14.0'
     });
+    FB.AppEvents.logPageView(); 
   };
 
   (function(d, s, id) {

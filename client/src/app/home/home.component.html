@@ -9,10 +9,10 @@
         </h1>
         <div class="flex flex-wrap items-center mt-4">
           <div class="inline-block mr-5 text-white">We Buy:</div>
-          <a href="" class="rounded-full bg-white px-5 py-2 bg-opacity-40 mr-3">iPhone</a>
-          <a href="" class="rounded-full bg-white px-5 py-2 bg-opacity-40 mr-3">Mac</a>
-          <a href="" class="rounded-full bg-white px-5 py-2 bg-opacity-40 mr-3">iWatch</a>
-          <a href="" class="rounded-full bg-white px-5 py-2 bg-opacity-40">iPad</a>
+          <a routerLink="products/list/iPhone"class="rounded-full bg-white px-5 py-2 bg-opacity-40 mr-3">iPhone</a>
+          <a [routerLink]="'/products/list/Mac'"  class="rounded-full bg-white px-5 py-2 bg-opacity-40 mr-3">Mac</a>
+          <a [routerLink]="'/products/list/iWatch'" class="rounded-full bg-white px-5 py-2 bg-opacity-40 mr-3">iWatch</a>
+          <a [routerLink]="'/products/list/iPad'" class="rounded-full bg-white px-5 py-2 bg-opacity-40">iPad</a>
         </div>
         <br>
         <br>

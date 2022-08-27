@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url:'http://localhost:3000',
+  api_url:'https://localhost:3000',
   frontURL:'http://localhost:4200',
   facebok_id: '430977672213037', 
   facebook_secret_key : '3edd3bb40d19fc0d642dee1a0798541b'

@@ -12,6 +12,10 @@ const UserSchema = new Schema({
         default:''
     },
     facebookId: String,
+    firsttimefacebook: {
+      type:String,
+      default: true,  
+    },
     admin:{
         type:Boolean,
         default:false,
