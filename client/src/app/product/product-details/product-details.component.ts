@@ -37,10 +37,10 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
     this.subs.add = this.service.getDeviceById(this.id).subscribe((res:device)=>{
       this.device = res;
       this.conditions = [
-        {description:"LIKE NEW: FLAWLESS CONDITION NOT A SINGLE SCRATCH" , price: this.device?.newcondition},
-        {description:"GOOD: SOME SCRATCHES SHOWS SIGNS OF USE" , price: this.device?.goodcondition},
-        {description:"POOR: CRACKS FRONT AND/OR BACK CRACKED SCREEN MUST STILL BE FLAWLESS CONDITION!" , price: this.device?.poorcondition},
-        {description:"FAULTY: BAD LCD AND/OR DOESN'T TURN ON, ANY SPEAKERS MICS CAMERAS FAIL (IF ANY ARE TRUE DEVICE IS FAULTY" , price: this.device?.faultycondition}
+        {description:"BRAND NEW: IN THE BOX , NEVER BEEN USED" , price: this.device?.newcondition},
+        {description:"LIKE NEW: FLAWLESS CONDITION NOT A SINGLE SCRATCH" , price: this.device?.goodcondition},
+        {description:"GOOD: SOME SCRATCHES SHOWS SIGNS OF USE" , price: this.device?.poorcondition},
+        {description:"POOR: CRACKS FRONT AND/OR BACK CRACKED SCREEN MUST STILL BE FLAWLESS CONDITION!" , price: this.device?.faultycondition}
       ]
   });
     this.subs.add = this.productService.getProductById(this.prodId).subscribe((res:product)=>{
@@ -52,10 +52,8 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
   }
   selectOption(val) {
     let myreturn;
-    console.log("valueeee",val.value);
       this.opt=val.value;
       myreturn = val.value;
-    console.log("heeeeere",this.conditions[this.opt].description);
     return myreturn;
   }
 

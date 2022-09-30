@@ -18,7 +18,7 @@ export class FacebookService {
     return FB.login((result:any) => {
       console.log("result ==>",result);
       if (result.authResponse) {
-        return this.http.post(`http://localhost:3001/users/facebook/token`, {access_token: result.authResponse.accessToken})
+        return this.http.post(`https://api.nationwideventures.net/users/facebook/token`, {access_token: result.authResponse.accessToken})
         .pipe(
           map((res:any) => {
             localStorage.setItem('access_token', res.token);

@@ -8,10 +8,10 @@ export const menuList: Menu[] = [
     path: '',
     name: 'Home'
   },
-  {
-    path: '/how-it-works',
-    name: 'How It Works ?'
-  },
+  // {
+  //   path: '/how-it-works',
+  //   name: 'How It Works ?'
+  // },
   {
     path: '/contact',
     name: 'Contact Us'

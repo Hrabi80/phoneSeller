@@ -55,9 +55,7 @@ export class LoginComponent implements OnInit {
             'success'
           )
         })
-        // console.log('jwtData: ' + jwtData);
-        // console.log('decodedJwtJsonData: ' + decodedJwtJsonData);
-        // console.log('decodedJwtData: ' + decodedJwtData);
+
         setTimeout(() => {
           if(this.isAdmin == true){
            this.router.navigate(['/dashboard-naim-adminvv1']);

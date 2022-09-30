@@ -26,10 +26,10 @@
 
 
       <div class="products-container">
-      <div class="productt-card" *ngFor="let prod of products  | filter: filterBy:'name' "  [attr.data-index]="i">
+      <div class="productt-card" *ngFor="let prod of products.slice().reverse()  | filter: filterBy:'name' "  [attr.data-index]="i">
         <div class="badge">Up to ${{prod.upPrice}}</div>
         <div class="product-tumb">
-          <img src="{{prod.photo}}" alt="" (click)="openPopup(prod._id)">
+          <img src="{{prod.photo}}" alt="product picture" (click)="openPopup(prod._id)">
         </div>
         <div class="product-details">
           <span class="product-catagory">iPhone</span>

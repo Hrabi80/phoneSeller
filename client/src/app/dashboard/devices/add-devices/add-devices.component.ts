@@ -16,7 +16,7 @@ import { product } from 'src/app/models/product';
 export class AddDevicesComponent implements OnInit {
   deviceform!: FormGroup;
   deviceToAdd : device;
-  subscription: Subscription 
+  subscription: Subscription; 
   subs = new SubscriptionContainer();
   constructor(public dialogRef: MatDialogRef<ListDevicesComponent>,
     private fb : FormBuilder,

@@ -1,5 +1,6 @@
-import { Component, OnInit,Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit,Inject, OnDestroy ,ViewChild} from '@angular/core';
 import { MatDialog ,MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { device } from 'src/app/models/device';
 import { product } from 'src/app/models/product';
@@ -16,10 +17,14 @@ export class CharacteristicsPopupComponent implements OnInit,OnDestroy {
   subs = new SubscriptionContainer();
   listchar : Array<device>=[];
   product : product;
+  @ViewChild('closebutton') closebutton;
   constructor(private service : DeviceService,
+              private router : Router,
               private productService : ProductService,
               public dialogRef: MatDialogRef<ProductListComponent>,
              @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+             
 
   ngOnInit(): void {
     this.subs.add = this.service.getDevices(this.data.prodId).subscribe((res:Array<device>)=>{
@@ -32,12 +37,11 @@ export class CharacteristicsPopupComponent implements OnInit,OnDestroy {
   ngOnDestroy() {
     this.subs.dispose();
   }
-  goDevice(){}
-  close(){
-    this.dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-     // this.animal = result;
-    });
+  goDevice(item , product){
+    this.router.navigate(['/products/product-details/'+item+'/'+product])
+   setTimeout(() => {
+    
+    location.reload();
+   }, 100);
   }
-
 }
