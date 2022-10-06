@@ -8,10 +8,10 @@ export const menuList: Menu[] = [
     path: '',
     name: 'Home'
   },
-  // {
-  //   path: '/how-it-works',
-  //   name: 'How It Works ?'
-  // },
+  {
+    path:'how-it-works',
+    name:'How it works ?'
+  },
   {
     path: '/contact',
     name: 'Contact Us'
@@ -33,8 +33,8 @@ export const mobileMenuList: Menu[] = [
     name: 'Home'
   },
   {
-    path: '/how-it-works',
-    name: 'How It Works ?'
+    path:'how-it-works',
+    name:'How it works ?'
   },
   {
     path: '/contact',
